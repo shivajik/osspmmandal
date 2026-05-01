@@ -54,7 +54,7 @@ export const LEADERSHIP = [
     name: "Prof. Nandkishore Gangadhar Gaikwad",
     role: "Secretary",
     qualification: "M.Sc., M.Ed.",
-    photo: null, // monogram placeholder
+    photo: "https://customer-assets.emergentagent.com/job_academic-pro-8/artifacts/st7r02zg_Mr.%20Nandkishore%20Gangadhar%20Gaikwad.jpg",
   },
   {
     name: "Mr. Ghanshyam Gaikwad",
