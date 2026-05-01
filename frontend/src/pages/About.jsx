@@ -1,5 +1,5 @@
 import PageHero from "../components/PageHero";
-import { EXECUTIVE, ORG } from "../data/content";
+import { EXECUTIVE, LEADERSHIP, ORG } from "../data/content";
 import { motion } from "framer-motion";
 
 export default function About() {
@@ -77,13 +77,78 @@ export default function About() {
         </div>
       </section>
 
+      {/* Leadership Portraits */}
+      <section className="bg-[#FBF9F6] border-t border-[#0A192F]/10">
+        <div className="max-w-[1400px] mx-auto px-6 md:px-10 py-24">
+          <div className="grid grid-cols-12 gap-8 mb-14 items-end">
+            <div className="col-span-12 md:col-span-8">
+              <div className="label-kicker text-[#1A5F5A] mb-4">Management Body · Portraits</div>
+              <h2 className="font-display font-medium text-4xl md:text-5xl text-[#0A192F] leading-tight tracking-tight">
+                The faces behind the <span className="italic">Mandal.</span>
+              </h2>
+            </div>
+            <div className="col-span-12 md:col-span-4 md:text-right">
+              <p className="font-body text-[#4A5568] text-sm md:text-base">
+                Led by educators, administrators and social workers who have been part of OSSPM&rsquo;s journey since its founding.
+              </p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-12 gap-6 md:gap-8" data-testid="leadership-portraits">
+            {LEADERSHIP.map((p, i) => (
+              <motion.div
+                key={p.name}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, delay: i * 0.1 }}
+                className="col-span-12 md:col-span-4 border border-[#0A192F]/10 bg-white group hover:bg-[#F0F4F8] transition-colors"
+                data-testid={`leadership-card-${i}`}
+              >
+                <div className="relative aspect-[4/5] overflow-hidden bg-[#0A192F]">
+                  {p.photo ? (
+                    <img
+                      src={p.photo}
+                      alt={p.name}
+                      loading="lazy"
+                      className="w-full h-full object-cover grayscale-[15%] group-hover:grayscale-0 group-hover:scale-[1.03] transition-all duration-[1200ms] ease-out"
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#0A192F] to-[#1A5F5A]">
+                      <div className="font-display text-[140px] leading-none text-[#D4AF37]/90">
+                        {p.name
+                          .replace(/^(Mr\.|Mrs\.|Prof\.|Dr\.)\s*/, "")
+                          .split(" ")
+                          .map((w) => w[0])
+                          .slice(0, 2)
+                          .join("")}
+                      </div>
+                    </div>
+                  )}
+                  <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#0A192F]/80 to-transparent pointer-events-none" />
+                  <div className="absolute bottom-4 left-5 label-kicker text-[#D4AF37]">
+                    {(i + 1).toString().padStart(2, "0")} · {p.role}
+                  </div>
+                </div>
+                <div className="p-6 md:p-8">
+                  <h3 className="font-display text-xl md:text-2xl text-[#0A192F] leading-tight group-hover:text-[#D4AF37] transition-colors">
+                    {p.name}
+                  </h3>
+                  <div className="label-kicker text-[#4A5568] mt-3">{p.qualification}</div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Leadership Table */}
       <section className="max-w-[1400px] mx-auto px-6 md:px-10 py-24">
         <div className="grid grid-cols-12 gap-8 mb-12 items-end">
           <div className="col-span-12 md:col-span-8">
-            <div className="label-kicker text-[#1A5F5A] mb-4">Executive Committee</div>
+            <div className="label-kicker text-[#1A5F5A] mb-4">Executive Committee · Full Roster</div>
             <h2 className="font-display font-medium text-4xl md:text-5xl text-[#0A192F] leading-tight tracking-tight">
-              The people who steer the Mandal.
+              Every member of the governing body.
             </h2>
           </div>
           <div className="col-span-12 md:col-span-4 md:text-right">

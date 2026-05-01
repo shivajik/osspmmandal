@@ -21,13 +21,47 @@ export const ORG = {
 };
 
 export const EXECUTIVE = [
-  { name: "Mr. Ashokraoji G. Gaikwad", qualification: "B.Sc., D.L.L.&W., L.L.B., M.B.A.", role: "President" },
+  {
+    name: "Mr. Ashokraoji G. Gaikwad",
+    qualification: "B.Sc., D.L.L.&W., L.L.B., M.B.A.",
+    role: "President",
+    photo: "https://customer-assets.emergentagent.com/job_academic-pro-8/artifacts/mpvc0pl1_A_G_Gaikwad.jpg",
+  },
   { name: "Mr. Nitinrao K. Naiknaware", qualification: "M.Sc., B.Ed.", role: "Vice President" },
-  { name: "Mr. Nandkishor G. Gaikwad", qualification: "M.Sc., M.Ed.", role: "Secretary" },
+  { name: "Prof. Nandkishore G. Gaikwad", qualification: "M.Sc., M.Ed.", role: "Secretary" },
+  {
+    name: "Mr. Ghanshyam Gaikwad",
+    qualification: "—",
+    role: "Administration & Strategy Lead",
+    photo: "https://customer-assets.emergentagent.com/job_academic-pro-8/artifacts/14hbkq4m_Mr.%20Ghanshyam%20Gaikwad.jpeg",
+  },
   { name: "Mrs. Alka N. Gaikwad", qualification: "M.A., B.P.Ed.", role: "Treasurer" },
   { name: "Mrs. Mrunalini A. Gaikwad", qualification: "M.A.", role: "Member" },
   { name: "Mrs. Sangita R. Gaikwad", qualification: "M.A.", role: "Member" },
   { name: "Mr. Shivajirao T. Dhage", qualification: "—", role: "Member" },
+];
+
+// Highlighted leadership shown as portrait cards on the About page.
+// Order determines display order. Missing photos render a monogram.
+export const LEADERSHIP = [
+  {
+    name: "Mr. Ashokraoji Gangadhar Gaikwad",
+    role: "President",
+    qualification: "B.Sc., D.L.L.&W., L.L.B., M.B.A.",
+    photo: "https://customer-assets.emergentagent.com/job_academic-pro-8/artifacts/mpvc0pl1_A_G_Gaikwad.jpg",
+  },
+  {
+    name: "Prof. Nandkishore Gangadhar Gaikwad",
+    role: "Secretary",
+    qualification: "M.Sc., M.Ed.",
+    photo: null, // monogram placeholder
+  },
+  {
+    name: "Mr. Ghanshyam Gaikwad",
+    role: "Administration & Strategy Lead",
+    qualification: "—",
+    photo: "https://customer-assets.emergentagent.com/job_academic-pro-8/artifacts/14hbkq4m_Mr.%20Ghanshyam%20Gaikwad.jpeg",
+  },
 ];
 
 export const BRANCHES = {
