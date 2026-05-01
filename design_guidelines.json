@@ -1,0 +1,141 @@
+{
+  "project_name": "Om Shivkrupa Shikshan Prasarak Mandal (OSSPM) Website",
+  "archetype": {
+    "name": "Archetype 5: Jewel & Luxury (Adapted for Academic Editorial)",
+    "theme": "Light",
+    "rationale": "An educational NGO requires an authoritative, respected, and deeply trusted identity. A 'Clean Academic' approach using deep navy and gold evokes prestige and history, while the light parchment background ensures accessibility and approachability. We are leveraging 'editorial' layouts over generic 'SaaS' cards to give it a premium university feel."
+  },
+  "typography": {
+    "headings": {
+      "font_family": "Playfair Display",
+      "font_weight": "font-medium to font-bold",
+      "letter_spacing": "tracking-tight",
+      "usage": "All main section titles, hero headlines, and prominent quotes. Never center by default; use deliberate left alignment or offset asymmetry."
+    },
+    "body": {
+      "font_family": "Outfit",
+      "font_weight": "font-light to font-normal",
+      "letter_spacing": "tracking-normal",
+      "usage": "Paragraphs, navigation, meta text, data tables, and forms."
+    },
+    "accents_labels": {
+      "font_family": "Outfit",
+      "font_weight": "font-medium",
+      "text_transform": "uppercase",
+      "letter_spacing": "tracking-widest",
+      "usage": "Overlines, tags, small secondary buttons, category labels (e.g., 'MARATHI SCHOOLS')."
+    },
+    "scale_hierarchy": {
+      "h1": "text-5xl md:text-6xl lg:text-7xl leading-none",
+      "h2": "text-3xl md:text-4xl lg:text-5xl leading-tight",
+      "h3": "text-2xl md:text-3xl",
+      "body": "text-base md:text-lg leading-relaxed",
+      "small": "text-xs md:text-sm uppercase tracking-widest"
+    }
+  },
+  "color_palette": {
+    "background": {
+      "primary": "#FBF9F6",
+      "description": "Parchment/Bone White. Used as the main body background to give an organic, high-end editorial paper feel."
+    },
+    "text": {
+      "primary": "#0A192F",
+      "secondary": "#4A5568",
+      "description": "Deep Navy for primary text and headings. Soft charcoal/slate for secondary body text to maintain contrast."
+    },
+    "brand_accents": {
+      "primary": "#0A192F",
+      "gold": "#D4AF37",
+      "emerald_teal": "#1A5F5A",
+      "description": "Deep Navy as the structural color. Gold as the primary CTA and highlight color. Emerald Teal used sparingly for tags or success states."
+    },
+    "surface": {
+      "light": "#FFFFFF",
+      "tinted": "#F0F4F8",
+      "dark": "#0A192F"
+    },
+    "borders": {
+      "color": "rgba(10, 25, 47, 0.1)",
+      "description": "Very subtle navy borders to structure grids."
+    }
+  },
+  "layout_and_spacing": {
+    "grid_system": "The 'Editorial/Swiss' Grid. Use grid-cols-1 md:grid-cols-12 with wide gaps (gap-8 or gap-12). Heavy use of asymmetry. Example: Text spans 5 columns, image spans 7 columns.",
+    "spacing_scale": "Generous. Use p-8, p-12, p-16, py-24. Containers must breathe. Do not cram content.",
+    "surfaces_and_cards": {
+      "style": "Grid Borders (Technical Look).",
+      "radius": "rounded-none",
+      "shadows": "shadow-none",
+      "borders": "1px solid border-navy/10. Use border-collapse effects. Avoid 'floating' cards with drop shadows.",
+      "hover_effects": "Subtle background tint shift (e.g., hover:bg-[#F0F4F8]) or text color shift to Gold. No lifting/translating."
+    }
+  },
+  "motion_and_interaction": {
+    "philosophy": "Sophisticated, slow, and intentional.",
+    "hover_states": "Links should have an underline expansion effect or color transition to Gold. Images in gallery should have a slow, slight scale up (scale-105) on hover within a hidden overflow container.",
+    "scroll_animations": "Staggered fade-up for lists. Parallax effects for hero images and large background typography."
+  },
+  "components_strategy": {
+    "navigation": {
+      "type": "Sticky Header with Glassmorphism",
+      "classes": "sticky top-0 z-50 backdrop-blur-xl bg-[#FBF9F6]/80 border-b border-[#0A192F]/10",
+      "structure": "Logo left, Links center, 'Admissions' CTA right."
+    },
+    "footer": {
+      "type": "Massive Inverted Footer",
+      "background": "#0A192F",
+      "text": "#FBF9F6",
+      "structure": "Huge typographic logo or brand statement. 4-column grid for links, address, and legal. Donation notice prominently displayed with Gold accents."
+    },
+    "buttons": {
+      "primary": "bg-[#0A192F] text-[#FBF9F6] hover:bg-[#D4AF37] hover:text-[#0A192F] transition-colors duration-300 rounded-none px-8 py-4 uppercase tracking-widest text-sm",
+      "secondary": "border border-[#0A192F] text-[#0A192F] hover:bg-[#0A192F] hover:text-[#FBF9F6] transition-colors duration-300 rounded-none px-8 py-4 uppercase tracking-widest text-sm"
+    },
+    "data_display": {
+      "tables": "Minimalist Shadcn UI tables for the Executive Committee. No vertical borders, only 1px subtle horizontal dividers. Bold left column, regular right column."
+    }
+  },
+  "pages_content_mapping": {
+    "Home": {
+      "hero": "Full height split-screen or large overlapping image. Left: Bold H1 'Empowering Rural Maharashtra Through Education'. Right/Background: Hero campus image.",
+      "about_snippet": "Short intro on OSSPM with a 'Discover Our History' link.",
+      "branches_preview": "Bento grid teasing Marathi, English, and College divisions.",
+      "news_preview": "Editorial list of recent announcements."
+    },
+    "About OSSPM": {
+      "history": "Long-form editorial text area. Established 1996, registered under Mah society Act 21 of 1860.",
+      "leadership": "Executive Committee table (President: Ashokraoji G. Gaikwad, Secretary: Nandkishore Gangadhar Gaikwad, Admin Lead: Ghanshyam Gaikwad, etc.)"
+    },
+    "Branches": {
+      "structure": "Three distinct sections separated by massive padding (py-24). 1. Marathi Schools (6 items), 2. English Schools (2 items), 3. Colleges (3 items). Use minimalist list or grid layout."
+    },
+    "Gallery": {
+      "structure": "Masonry grid or dynamic 'Tetris' grid of campus photos. No gaps between images, or massive gaps. Be decisive."
+    },
+    "Admissions": {
+      "structure": "Process steps (1, 2, 3) using large display numbers. FAQ accordion."
+    },
+    "Contact Us": {
+      "structure": "2-column layout. Left: Contact form (Shadcn customized). Right: Address details (Plot No 43, Gut No-91 Part, Samrat Nagar, Behind Bembde Hospital, By Pass Satara area, Aurangabad 431001), Phones (7588023221 / 8600144259 / 9890560688), Email. Map integration."
+    }
+  },
+  "media_assets": {
+    "images": {
+      "hero_campus": "https://static.prod-images.emergentagent.com/jobs/49237dc5-f78a-417a-9fae-2971c147c397/images/4054b25793b9a97cde782a26bd170262a45f46b8c10d703fd124c76967e29188.png",
+      "school_exterior_1": "https://images.unsplash.com/photo-1777378543333-b4fb4f96fdd3",
+      "school_exterior_2": "https://images.unsplash.com/photo-1758611228434-7b5b697abd0a",
+      "students_campus_1": "https://images.unsplash.com/photo-1725231949188-45d4c2d028b3",
+      "students_campus_2": "https://images.unsplash.com/photo-1642420022278-aaa124e13adb"
+    },
+    "usage_rules": "Use images with overlay bg-navy/20 when placing white text over them. Use image tags directly for inline images to maintain aspect ratio with object-cover."
+  },
+  "technical_requirements": {
+    "libraries_to_install": [
+      "lucide-react",
+      "framer-motion",
+      "clsx",
+      "tailwind-merge"
+    ],
+    "testing": "All interactive and key informational elements MUST include a `data-testid` attribute. E.g., `data-testid=\"contact-submit-button\"`, `data-testid=\"nav-home-link\"`."
+  }
+}
