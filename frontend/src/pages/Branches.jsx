@@ -1,7 +1,8 @@
 import PageHero from "../components/PageHero";
 import { BRANCHES } from "../data/content";
-import { MapPin } from "lucide-react";
+import { MapPin, ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 function Section({ data, colorKey, index }) {
   const accents = {
@@ -38,28 +39,40 @@ function Section({ data, colorKey, index }) {
         <div className="border-t border-[#0A192F]/10">
           {data.items.map((item, i) => (
             <motion.div
-              key={item.name}
+              key={item.slug || item.name}
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.5, delay: i * 0.06 }}
-              className="group grid grid-cols-12 gap-4 md:gap-6 py-8 border-b border-[#0A192F]/10 hover:bg-white/60 transition-colors -mx-2 md:-mx-4 px-2 md:px-4"
+              className="border-b border-[#0A192F]/10"
               data-testid={`branch-${colorKey}-${i}`}
             >
-              <div className="col-span-2 md:col-span-1">
-                <div className="font-display text-3xl md:text-4xl" style={{ color: a.bar }}>
-                  {(i + 1).toString().padStart(2, "0")}
+              <Link
+                to={`/branches/${item.slug}`}
+                className="group grid grid-cols-12 gap-4 md:gap-6 py-8 hover:bg-white/60 transition-colors -mx-2 md:-mx-4 px-2 md:px-4"
+              >
+                <div className="col-span-2 md:col-span-1">
+                  <div className="font-display text-3xl md:text-4xl" style={{ color: a.bar }}>
+                    {(i + 1).toString().padStart(2, "0")}
+                  </div>
                 </div>
-              </div>
-              <div className="col-span-10 md:col-span-8">
-                <h3 className="font-display text-xl md:text-2xl text-[#0A192F] leading-tight group-hover:text-[#D4AF37] transition-colors">
-                  {item.name}
-                </h3>
-              </div>
-              <div className="col-span-12 md:col-span-3 flex items-start gap-2 text-[#4A5568]">
-                <MapPin size={14} className="mt-[5px] shrink-0" style={{ color: a.bar }} />
-                <span className="text-sm md:text-base font-light">{item.location}</span>
-              </div>
+                <div className="col-span-10 md:col-span-7">
+                  <h3 className="font-display text-xl md:text-2xl text-[#0A192F] leading-tight group-hover:text-[#D4AF37] transition-colors flex items-start gap-3">
+                    <span>{item.name}</span>
+                    <ArrowUpRight
+                      size={18}
+                      className="mt-1 shrink-0 text-[#0A192F]/40 group-hover:text-[#D4AF37] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all"
+                    />
+                  </h3>
+                  {item.established && (
+                    <div className="label-kicker text-[#4A5568] mt-2">Estd. {item.established} · {item.medium}</div>
+                  )}
+                </div>
+                <div className="col-span-12 md:col-span-4 flex items-start gap-2 text-[#4A5568]">
+                  <MapPin size={14} className="mt-[5px] shrink-0" style={{ color: a.bar }} />
+                  <span className="text-sm md:text-base font-light">{item.location}</span>
+                </div>
+              </Link>
             </motion.div>
           ))}
         </div>

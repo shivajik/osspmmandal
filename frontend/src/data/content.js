@@ -64,39 +64,192 @@ export const LEADERSHIP = [
   },
 ];
 
+// Each item now includes: slug, medium, programs, established, established context, contact and a longer description.
+// Used by /branches list and /branches/:slug detail page.
 export const BRANCHES = {
   marathi: {
     title: "Marathi Schools",
     kicker: "Primary & Secondary",
     count: 6,
+    division: "marathi",
     items: [
-      { name: "Late. Vimalbai G. Gaikwad Secondary School", location: "Gaikwad Jalgaon, Tq. Shevgaon, Dist. Ahmednagar" },
-      { name: "Late. Kishanrao Dhanve Secondary School", location: "Bharadi, Tq. Ambad, Dist. Jalna" },
-      { name: "Secondary School, Rui", location: "Tq. Ambad, Dist. Jalna" },
-      { name: "Shree Shaneshwar Secondary School", location: "Limbe Jalgaon, Tq. Gangapur, Dist. Aurangabad" },
-      { name: "Om Madhyamic Vidyalay", location: "Sahakar Nagar, Aurangabad" },
-      { name: "Om Balak Mandir", location: "Sahakar Nagar, Aurangabad" },
+      {
+        slug: "late-vimalbai-g-gaikwad-secondary-school",
+        name: "Late. Vimalbai G. Gaikwad Secondary School",
+        location: "Gaikwad Jalgaon, Tq. Shevgaon, Dist. Ahmednagar",
+        medium: "Marathi",
+        programs: ["Std. V", "Std. VI", "Std. VII", "Std. VIII", "Std. IX", "Std. X (SSC)"],
+        established: "1998",
+        about:
+          "One of OSSPM's flagship rural campuses, established to bring quality SSC-board education to children of farming families across Shevgaon taluka. The school combines traditional Marathi-medium pedagogy with modern science and computer labs.",
+      },
+      {
+        slug: "late-kishanrao-dhanve-secondary-school",
+        name: "Late. Kishanrao Dhanve Secondary School",
+        location: "Bharadi, Tq. Ambad, Dist. Jalna",
+        medium: "Marathi",
+        programs: ["Std. V", "Std. VI", "Std. VII", "Std. VIII", "Std. IX", "Std. X (SSC)"],
+        established: "2002",
+        about:
+          "Serving the villages of Ambad taluka, this secondary school focuses on first-generation learners and girls' education with dedicated transport and scholarship support.",
+      },
+      {
+        slug: "secondary-school-rui",
+        name: "Secondary School, Rui",
+        location: "Tq. Ambad, Dist. Jalna",
+        medium: "Marathi",
+        programs: ["Std. V", "Std. VI", "Std. VII", "Std. VIII", "Std. IX", "Std. X (SSC)"],
+        established: "2005",
+        about:
+          "A community-rooted Marathi-medium school at Rui village. Special emphasis on agriculture, environmental science and Marathi literature.",
+      },
+      {
+        slug: "shree-shaneshwar-secondary-school",
+        name: "Shree Shaneshwar Secondary School",
+        location: "Limbe Jalgaon, Tq. Gangapur, Dist. Aurangabad",
+        medium: "Marathi",
+        programs: ["Std. V", "Std. VI", "Std. VII", "Std. VIII", "Std. IX", "Std. X (SSC)"],
+        established: "2007",
+        about:
+          "Located in Limbe Jalgaon, the school provides affordable secondary education with strong outcomes in SSC board exams and a vibrant cultural calendar.",
+      },
+      {
+        slug: "om-madhyamic-vidyalay",
+        name: "Om Madhyamic Vidyalay",
+        location: "Sahakar Nagar, Aurangabad",
+        medium: "Marathi",
+        programs: ["Std. V", "Std. VI", "Std. VII", "Std. VIII", "Std. IX", "Std. X (SSC)"],
+        established: "2010",
+        about:
+          "OSSPM's urban Marathi-medium school in Sahakar Nagar, Aurangabad. Houses smart classrooms, a computer lab, library and a dedicated sports ground.",
+      },
+      {
+        slug: "om-balak-mandir",
+        name: "Om Balak Mandir",
+        location: "Sahakar Nagar, Aurangabad",
+        medium: "Marathi",
+        programs: ["Nursery", "Jr. KG", "Sr. KG", "Std. I – IV"],
+        established: "2010",
+        about:
+          "A pre-primary and primary school for the youngest learners — focused on play-based, mother-tongue early childhood education.",
+      },
     ],
   },
   english: {
     title: "English Schools",
     kicker: "CBSE / State Medium",
     count: 2,
+    division: "english",
     items: [
-      { name: "Late. Gangadhar Patil English School", location: "Gaikwad Jalgaon, Tq. Shevgaon, Dist. Ahmednagar" },
-      { name: "Sai English School, Rui", location: "Tq. Ambad, Dist. Jalna" },
+      {
+        slug: "late-gangadhar-patil-english-school",
+        name: "Late. Gangadhar Patil English School",
+        location: "Gaikwad Jalgaon, Tq. Shevgaon, Dist. Ahmednagar",
+        medium: "English",
+        programs: ["Nursery", "Jr. KG", "Sr. KG", "Std. I – X"],
+        established: "2008",
+        about:
+          "OSSPM's English-medium flagship at Gaikwad Jalgaon. Bilingual confidence, smart classrooms and a STEM-first curriculum prepare rural students for national-level opportunities.",
+      },
+      {
+        slug: "sai-english-school-rui",
+        name: "Sai English School, Rui",
+        location: "Tq. Ambad, Dist. Jalna",
+        medium: "English",
+        programs: ["Nursery", "Jr. KG", "Sr. KG", "Std. I – VIII"],
+        established: "2012",
+        about:
+          "An English-medium school at Rui designed to make English-medium education accessible to families from surrounding villages at affordable fees.",
+      },
     ],
   },
   colleges: {
     title: "Colleges",
     kicker: "Higher Secondary & Junior",
     count: 3,
+    division: "colleges",
     items: [
-      { name: "Late. Vimalbai G. Gaikwad Secondary & Higher Secondary School", location: "Gaikwad Jalgaon, Tq. Shevgaon, Dist. Ahmednagar" },
-      { name: "Adarsh Junior College", location: "Gaikwad Jalgaon, Tq. Shevgaon, Dist. Ahmednagar" },
-      { name: "Shree Shaneshwar Higher Secondary School", location: "Limbe Jalgaon, Tq. Gangapur, Dist. Aurangabad" },
+      {
+        slug: "late-vimalbai-g-gaikwad-higher-secondary",
+        name: "Late. Vimalbai G. Gaikwad Secondary & Higher Secondary School",
+        location: "Gaikwad Jalgaon, Tq. Shevgaon, Dist. Ahmednagar",
+        medium: "Marathi · English",
+        programs: ["Std. XI Science", "Std. XII Science", "Std. XI Arts", "Std. XII Arts"],
+        established: "2010",
+        about:
+          "A combined secondary and higher-secondary campus offering Science and Arts streams. Strong record in MHT-CET, NEET and JEE coaching for rural students.",
+      },
+      {
+        slug: "adarsh-junior-college",
+        name: "Adarsh Junior College",
+        location: "Gaikwad Jalgaon, Tq. Shevgaon, Dist. Ahmednagar",
+        medium: "Marathi · English",
+        programs: ["XI / XII Science", "XI / XII Arts", "XI / XII Commerce"],
+        established: "2012",
+        about:
+          "Junior college offering Science, Arts and Commerce streams with experienced faculty and dedicated coaching for entrance examinations.",
+      },
+      {
+        slug: "shree-shaneshwar-higher-secondary",
+        name: "Shree Shaneshwar Higher Secondary School",
+        location: "Limbe Jalgaon, Tq. Gangapur, Dist. Aurangabad",
+        medium: "Marathi",
+        programs: ["Std. XI Science", "Std. XII Science", "Std. XI Arts", "Std. XII Arts"],
+        established: "2014",
+        about:
+          "Higher-secondary education at Limbe Jalgaon — bringing Std. XI and XII Science and Arts streams to a region historically underserved at the +2 level.",
+      },
     ],
   },
+};
+
+// Flat list helper used by /branches/:slug router
+export const ALL_BRANCHES = ["marathi", "english", "colleges"].flatMap((k) =>
+  BRANCHES[k].items.map((it) => ({ ...it, division: k, divisionTitle: BRANCHES[k].title }))
+);
+
+export const VALUES = [
+  {
+    n: "01",
+    title: "Access for the rural learner",
+    body: "Bringing affordable, high-quality schooling to villages across Ahmednagar, Jalna and Aurangabad — the children whose parents had no school to attend.",
+  },
+  {
+    n: "02",
+    title: "Dignity for the marginalized",
+    body: "Active fee concessions and scholarships for SC, ST, EBC, women and first-generation learners — uplift, not charity.",
+  },
+  {
+    n: "03",
+    title: "Mother-tongue first",
+    body: "We believe a child learns fastest in her own language. Six Marathi-medium schools sit at the core of OSSPM, complemented by English-medium options.",
+  },
+  {
+    n: "04",
+    title: "Modern + rooted",
+    body: "Smart classrooms, science and computer labs paired with cultural programmes, sports and value education — the modern world without losing the village.",
+  },
+  {
+    n: "05",
+    title: "Self-help, not dependency",
+    body: "The Mandal acts as facilitator. Communities mobilise their own human and material resources; we channel them toward education and dignity.",
+  },
+  {
+    n: "06",
+    title: "Transparency & trust",
+    body: "Registered under the Maharashtra Society Act and Mumbai Public Trust Act since 1996, with 12 AA & 80 G certification for tax-exempt giving.",
+  },
+];
+
+export const VISION_MISSION = {
+  vision:
+    "A Maharashtra where no child — regardless of caste, gender or postal code — is denied a quality education and the dignity that comes with it.",
+  mission: [
+    "To establish and run schools and colleges that bring high-quality formal education within reach of rural and marginalized communities.",
+    "To empower women, the economically weaker sections and SC/ST families through scholarships, micro-credit and welfare activities.",
+    "To facilitate community self-help — mobilising local human, natural and material resources for sustainable development in health, education and environment.",
+    "To remove caste-based discrimination and build scientific temperament through awareness campaigns and inclusive school culture.",
+  ],
 };
 
 export const NEWS = [
@@ -208,6 +361,8 @@ export const IMAGES = {
 export const NAV_LINKS = [
   { to: "/", label: "Home" },
   { to: "/about", label: "About" },
+  { to: "/vision", label: "Vision" },
+  { to: "/leadership", label: "Leadership" },
   { to: "/branches", label: "Branches" },
   { to: "/admissions", label: "Admissions" },
   { to: "/news", label: "News" },

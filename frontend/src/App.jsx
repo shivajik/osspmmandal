@@ -4,7 +4,10 @@ import { Toaster } from "sonner";
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import About from "./pages/About";
+import Vision from "./pages/Vision";
+import Leadership from "./pages/Leadership";
 import Branches from "./pages/Branches";
+import BranchDetail from "./pages/BranchDetail";
 import Admissions from "./pages/Admissions";
 import News from "./pages/News";
 import Gallery from "./pages/Gallery";
@@ -18,7 +21,10 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
+            <Route path="/vision" element={<Vision />} />
+            <Route path="/leadership" element={<Leadership />} />
             <Route path="/branches" element={<Branches />} />
+            <Route path="/branches/:slug" element={<BranchDetail />} />
             <Route path="/admissions" element={<Admissions />} />
             <Route path="/news" element={<News />} />
             <Route path="/gallery" element={<Gallery />} />
