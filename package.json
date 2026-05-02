@@ -2,11 +2,20 @@
   "name": "osspmmandal",
   "private": true,
   "engines": {
-    "node": "20.x"
+    "node": ">=20 <25"
   },
   "scripts": {
-    "dev": "cd frontend && npm start",
-    "build": "cd frontend && npm run build",
-    "start": "cd frontend && npm start"
+    "dev": "npm --prefix frontend run dev --",
+    "dev:api": "node api/index.js",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "dev:all": "concurrently \"npm run dev:api\" \"npm run dev:frontend\"",
+    "build": "npm --prefix frontend run build",
+    "start": "npm run dev:all"
+  },
+  "dependencies": {
+    "mongodb": "^6.20.0"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
   }
 }

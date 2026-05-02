@@ -1,79 +1,97 @@
-# Deploying OSSPM to Vercel
+# Deploying OSSPM on Vercel
 
-The app is now structured to deploy on Vercel as:
-- **Frontend** → static CRA build served by Vercel
-- **Backend** → FastAPI ASGI app running as a Vercel Python Serverless Function at `/api/*`
-- **Database** → MongoDB Atlas (cloud — replaces local MongoDB)
+## Root cause
 
----
+The Vercel failure was caused by the old Create React App stack:
 
-## 1. One-time setup
+- `react-scripts@5` + CRACO depends on older Webpack tooling.
+- Those nested packages include fragile `ajv`, `ajv-keywords`, and `schema-utils` combinations.
+- Vercel was using a newer Node.js runtime, which exposed dependency mismatches such as `Unknown keyword formatMinimum`.
+- Overrides only patched one layer and could still leave nested dependency conflicts.
 
-### 1a. MongoDB Atlas (free tier works)
-1. Create a free cluster: https://www.mongodb.com/cloud/atlas/register
-2. Add a database user (username + password).
-3. In **Network Access** → allow from anywhere (`0.0.0.0/0`) for Vercel.
-4. Copy the connection string:
-   `mongodb+srv://<user>:<pass>@cluster0.xxxxx.mongodb.net/?retryWrites=true&w=majority`
+## Stable fix applied
 
-### 1b. Push the repo to GitHub
-Vercel deploys from Git.
+The frontend has been migrated from CRA/CRACO to Vite.
 
----
+The deployment now uses:
 
-## 2. Deploy on Vercel
+- **Frontend:** Vite + React, output in `frontend/dist`
+- **Backend:** Node.js Vercel Serverless Function at `api/index.js`
+- **Database:** MongoDB Atlas via `MONGO_URL`
+- **Node:** `>=20 <25`, with the Vercel function pinned to `nodejs20.x`
 
-1. Go to https://vercel.com/new → import the repository.
-2. **Framework Preset**: leave it on `Other` (the `vercel.json` in this repo handles it).
-3. **Root Directory**: leave as repo root (do NOT set it to `frontend`).
-4. Under **Environment Variables**, add:
+This removes `react-scripts`, CRACO, Webpack, `schema-utils`, and the problematic `ajv-keywords` build path.
 
-| Key                     | Value                                                                 |
-|-------------------------|-----------------------------------------------------------------------|
-| `MONGO_URL`             | your MongoDB Atlas connection string                                  |
-| `DB_NAME`               | `osspm` (or any name you want)                                        |
-| `CORS_ORIGINS`          | `*` (or the final Vercel domain)                                      |
-| `REACT_APP_BACKEND_URL` | *leave empty* — frontend will use same-origin `/api` via rewrite      |
+## Vercel settings
 
-5. Click **Deploy**.
+Import the repository in Vercel with these settings:
 
----
+1. **Root Directory:** repository root, not `frontend`
+2. **Framework Preset:** Other
+3. **Install Command:** handled by `vercel.json`
+4. **Build Command:** handled by `vercel.json`
+5. **Output Directory:** handled by `vercel.json`
 
-## 3. What the repo layout does
+`vercel.json` now runs:
 
-```
-/vercel.json           ← build + routing config
-/api/index.py          ← Vercel entrypoint, re-exports FastAPI app
-/requirements.txt      ← Python deps for the serverless function (root level)
-/backend/server.py     ← actual FastAPI logic (unchanged)
-/frontend/             ← CRA React app
-/.vercelignore         ← excludes .env files, tests, memory, etc.
+```json
+{
+  "installCommand": "npm install && npm --prefix frontend install",
+  "buildCommand": "npm --prefix frontend run build",
+  "outputDirectory": "frontend/dist"
+}
 ```
 
-`vercel.json` does:
-- `buildCommand` builds the frontend with yarn
-- `outputDirectory` points Vercel at `frontend/build` for static hosting
-- `rewrites` routes any `/api/*` request to the Python serverless function at `api/index.py`
+## Environment variables
 
-Because `REACT_APP_BACKEND_URL` is empty in production, the frontend calls relative URLs like `/api/contact` — Vercel rewrites them to the Python function on the same domain (no CORS preflight).
+Add these in Vercel → Project → Settings → Environment Variables:
 
----
+| Key | Required | Value |
+| --- | --- | --- |
+| `MONGO_URL` | Yes | MongoDB Atlas connection string |
+| `DB_NAME` | Yes | Example: `osspm` |
+| `CORS_ORIGINS` | Optional | `*` or your Vercel domain |
+| `VITE_BACKEND_URL` | No | Leave empty on Vercel so the frontend uses same-origin `/api` |
 
-## 4. Local dev is unchanged
-Run locally exactly as before — Emergent supervisor + local MongoDB still work because:
-- `frontend/.env` still sets `REACT_APP_BACKEND_URL` for local preview
-- `backend/.env` still sets local `MONGO_URL`
-- Vercel-specific files (`vercel.json`, `api/`, root `requirements.txt`) are only read by Vercel
+## Local development
 
----
+Install dependencies:
 
-## 5. Known Vercel limitations vs native hosting
+```bash
+npm install
+npm --prefix frontend install
+```
 
-| Concern              | Implication                                                    |
-|----------------------|---------------------------------------------------------------|
-| Cold starts          | First request after idle may take 1–2 seconds                 |
-| 10s function timeout | Free plan; long LLM streams or heavy jobs may hit the limit   |
-| No persistent disk   | Don't store uploads locally — use S3/Cloudinary               |
-| MongoDB connections  | Each cold start opens a fresh client; Atlas connection limits |
+Create local environment variables if using MongoDB locally or Atlas:
 
-If any of these bite you, consider the split deploy model (Vercel frontend + Railway/Render backend + Atlas) or Emergent's native one-click deploy.
+```bash
+export MONGO_URL="mongodb+srv://USER:PASS@cluster.mongodb.net/?retryWrites=true&w=majority"
+export DB_NAME="osspm"
+```
+
+Run frontend only:
+
+```bash
+npm run dev
+```
+
+Run frontend + Node backend together:
+
+```bash
+npm start
+```
+
+Local URLs:
+
+- Frontend: `http://localhost:3000`
+- Backend: `http://localhost:5000/api`
+
+The Vite dev server proxies `/api` to `http://localhost:5000`, so contact form requests work locally.
+
+## Deploy steps
+
+1. Commit and push these changes to GitHub.
+2. In Vercel, keep Root Directory as repo root.
+3. Add the environment variables above.
+4. Redeploy with a clean cache if Vercel still has old CRA/Yarn cache.
+5. Open `/api` on the deployed domain to confirm the backend returns `OSSPM API is live`.
