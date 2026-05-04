@@ -345,7 +345,7 @@ export const IMAGES = {
   heroCampus:
     "https://static.prod-images.emergentagent.com/jobs/49237dc5-f78a-417a-9fae-2971c147c397/images/4054b25793b9a97cde782a26bd170262a45f46b8c10d703fd124c76967e29188.png",
   gallery: [
-    "/images/gallery/1000297309.jpg",
+    "/gallery/1000297309.jpg",
     "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1600&auto=format&fit=crop",
     "https://images.unsplash.com/photo-1497486751825-1233686d5d80?q=80&w=1600&auto=format&fit=crop",
     "https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=1600&auto=format&fit=crop",
