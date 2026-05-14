@@ -3,6 +3,7 @@ import { ALL_BRANCHES, BRANCHES, ORG } from "../data/content";
 import PageHero from "../components/PageHero";
 import { ArrowLeft, MapPin, BookOpen, Calendar, Phone, Mail } from "lucide-react";
 import { motion } from "framer-motion";
+import { SECTION_LIST } from "../data/branchSections";
 
 export default function BranchDetail() {
   const { slug } = useParams();
@@ -133,6 +134,22 @@ export default function BranchDetail() {
               </Link>
             </div>
           </aside>
+        </div>
+
+        {/* Section quick links */}
+        <div className="mt-16 pt-10 border-t border-[#0A192F]/10">
+          <div className="label-kicker text-[#1A5F5A] mb-5">Explore this branch</div>
+          <div className="flex flex-wrap gap-2">
+            {SECTION_LIST.map((s) => (
+              <Link
+                key={s.key}
+                to={`/branches/${branch.slug}/${s.key}`}
+                className="label-kicker border border-[#0A192F]/20 text-[#0A192F] px-4 py-2 hover:bg-[#0A192F] hover:text-[#FBF9F6] transition-colors"
+              >
+                {s.label}
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 

@@ -8,6 +8,7 @@ import Vision from "./pages/Vision";
 import Leadership from "./pages/Leadership";
 import Branches from "./pages/Branches";
 import BranchDetail from "./pages/BranchDetail";
+import BranchSection from "./pages/BranchSection";
 import Admissions from "./pages/Admissions";
 import News from "./pages/News";
 import Gallery from "./pages/Gallery";
@@ -25,6 +26,7 @@ function App() {
             <Route path="/leadership" element={<Leadership />} />
             <Route path="/branches" element={<Branches />} />
             <Route path="/branches/:slug" element={<BranchDetail />} />
+            <Route path="/branches/:slug/:section" element={<BranchSection />} />
             <Route path="/admissions" element={<Admissions />} />
             <Route path="/news" element={<News />} />
             <Route path="/gallery" element={<Gallery />} />
