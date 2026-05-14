@@ -2,7 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import { ALL_BRANCHES } from "../data/content";
 import { getBranchSection, SECTION_LIST } from "../data/branchSections";
 import PageHero from "../components/PageHero";
-import { ArrowLeft, FileText, Construction } from "lucide-react";
+import { ArrowLeft, FileText, Construction, Mail, Phone, MapPin } from "lucide-react";
 
 export default function BranchSection() {
   const { slug, section: sectionKey } = useParams();
@@ -103,6 +103,40 @@ export default function BranchSection() {
                   ))}
                 </tbody>
               </table>
+            </div>
+          </>
+        ) : data.type === "contact" ? (
+          <>
+            <h2 className="font-display text-3xl md:text-4xl text-[#0A192F] mb-8">{data.heading}</h2>
+            <div className="border border-[#0A192F]/10 divide-y divide-[#0A192F]/10 bg-white">
+              {data.address && (
+                <div className="flex items-start gap-3 px-6 py-4">
+                  <MapPin size={18} className="text-[#1A5F5A] mt-0.5" />
+                  <span className="font-body text-[#0A192F]">{data.address}</span>
+                </div>
+              )}
+              {data.udise && (
+                <div className="px-6 py-4 font-body text-[#0A192F]">
+                  <span className="label-kicker text-[#4A5568] mr-3">UDISE</span> {data.udise}
+                </div>
+              )}
+              {data.schoolIndex && (
+                <div className="px-6 py-4 font-body text-[#0A192F]">
+                  <span className="label-kicker text-[#4A5568] mr-3">School Index</span> {data.schoolIndex}
+                </div>
+              )}
+              {data.email && (
+                <div className="flex items-center gap-3 px-6 py-4">
+                  <Mail size={18} className="text-[#1A5F5A]" />
+                  <a href={`mailto:${data.email}`} className="font-body text-[#0A192F] hover:text-[#D4AF37]">{data.email}</a>
+                </div>
+              )}
+              {data.phones?.map((p) => (
+                <div key={p} className="flex items-center gap-3 px-6 py-4">
+                  <Phone size={18} className="text-[#1A5F5A]" />
+                  <a href={`tel:${p}`} className="font-body text-[#0A192F] hover:text-[#D4AF37]">+91 {p}</a>
+                </div>
+              ))}
             </div>
           </>
         ) : null}

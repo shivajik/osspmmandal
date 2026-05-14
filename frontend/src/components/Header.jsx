@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown, ChevronRight } from "lucide-react";
 import { ORG, ALL_BRANCHES } from "../data/content";
-import { SECTION_LIST } from "../data/branchSections";
+import { SECTION_LIST, EXTERNAL_BRANCH_URLS } from "../data/branchSections";
 
 const ABOUT_LINKS = [
   { to: "/about", label: "About" },
@@ -60,39 +60,65 @@ function Dropdown({ label, children, align = "left" }) {
 
 function BranchesDropdown({ onNavigate }) {
   const [hovered, setHovered] = useState(ALL_BRANCHES[0]?.slug);
+  const hoveredExternal = EXTERNAL_BRANCH_URLS[hovered];
   return (
     <div className="flex bg-[#FBF9F6] border border-[#0A192F]/15 shadow-xl min-w-[640px]">
       <ul className="w-[320px] border-r border-[#0A192F]/10 py-2">
-        {ALL_BRANCHES.map((b) => (
-          <li
-            key={b.slug}
-            onMouseEnter={() => setHovered(b.slug)}
-          >
-            <Link
-              to={`/branches/${b.slug}`}
-              onClick={onNavigate}
-              className={`flex items-center justify-between gap-2 px-5 py-3 text-sm text-[#0A192F] transition-colors ${
-                hovered === b.slug ? "bg-[#F0F4F8] text-[#1A5F5A]" : "hover:bg-[#F0F4F8]"
-              }`}
-            >
-              <span className="leading-tight">{b.name}</span>
-              <ChevronRight size={14} className="shrink-0 opacity-60" />
-            </Link>
-          </li>
-        ))}
+        {ALL_BRANCHES.map((b) => {
+          const ext = EXTERNAL_BRANCH_URLS[b.slug];
+          const cls = `flex items-center justify-between gap-2 px-5 py-3 text-sm text-[#0A192F] transition-colors ${
+            hovered === b.slug ? "bg-[#F0F4F8] text-[#1A5F5A]" : "hover:bg-[#F0F4F8]"
+          }`;
+          return (
+            <li key={b.slug} onMouseEnter={() => setHovered(b.slug)}>
+              {ext ? (
+                <a
+                  href={ext}
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={onNavigate}
+                  className={cls}
+                >
+                  <span className="leading-tight">{b.name}</span>
+                  <ChevronRight size={14} className="shrink-0 opacity-60" />
+                </a>
+              ) : (
+                <Link to={`/branches/${b.slug}`} onClick={onNavigate} className={cls}>
+                  <span className="leading-tight">{b.name}</span>
+                  <ChevronRight size={14} className="shrink-0 opacity-60" />
+                </Link>
+              )}
+            </li>
+          );
+        })}
       </ul>
       <ul className="w-[320px] py-2">
-        {SECTION_LIST.map((s) => (
-          <li key={s.key}>
-            <Link
-              to={`/branches/${hovered}/${s.key}`}
+        {hoveredExternal ? (
+          <li className="px-5 py-4 text-sm text-[#4A5568]">
+            Opens the official website
+            <a
+              href={hoveredExternal}
+              target="_blank"
+              rel="noreferrer"
               onClick={onNavigate}
-              className="block px-5 py-3 text-sm text-[#0A192F] hover:bg-[#F0F4F8] hover:text-[#1A5F5A] transition-colors"
+              className="block mt-2 label-kicker text-[#D4AF37] hover:text-[#0A192F] transition-colors break-all"
             >
-              {s.label}
-            </Link>
+              {hoveredExternal} ↗
+            </a>
           </li>
-        ))}
+        ) : (
+          SECTION_LIST.map((s) => (
+            <li key={s.key}>
+              <Link
+                to={`/branches/${hovered}/${s.key}`}
+                onClick={onNavigate}
+                className="block px-5 py-3 text-sm text-[#0A192F] hover:bg-[#F0F4F8] hover:text-[#1A5F5A] transition-colors"
+              >
+                {s.label}
+              </Link>
+            </li>
+          ))
+        )}
       </ul>
     </div>
   );

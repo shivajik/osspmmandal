@@ -12,9 +12,26 @@ const SECTION_LIST = [
 
 const PDF = (path) => `https://osspmandal.com/wp-content/uploads/${path}`;
 
+// Branches that link directly to a real external website rather than using
+// our internal /branches/:slug routes. When set, the header dropdown opens
+// the URL in a new tab and the branch detail / section pages are skipped.
+export const EXTERNAL_BRANCH_URLS = {
+  "adarsh-junior-college": "https://adarshjcollege.com/",
+  "late-vimalbai-g-gaikwad-higher-secondary": "https://vgghss.com/",
+};
+
 // slug (in our app) → section data
 export const BRANCH_SECTIONS = {
   "late-kishanrao-dhanve-secondary-school": {
+    "contact-us": {
+      type: "contact",
+      heading: "Late. Kisanrao Dhanve High School — Contact",
+      address: "Bhardi, Tq. Ambad, Dist. Jalna – 431209",
+      udise: "27180312502",
+      schoolIndex: "61.03.035",
+      email: "kkdmvb221@gmail.com",
+      phones: ["7588023219", "9552177218"],
+    },
     "scholarship-23-24": {
       type: "scholarships",
       heading: "LKDSS – Scholarship 23-24",
