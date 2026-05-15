@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown, ChevronRight } from "lucide-react";
 import { ORG, ALL_BRANCHES } from "../data/content";
-import { SECTION_LIST, EXTERNAL_BRANCH_URLS } from "../data/branchSections";
+import { EXTERNAL_BRANCH_URLS, getSectionsForBranch } from "../data/branchSections";
 
 const ABOUT_LINKS = [
   { to: "/about", label: "About" },
@@ -61,6 +61,7 @@ function Dropdown({ label, children, align = "left" }) {
 function BranchesDropdown({ onNavigate }) {
   const [hovered, setHovered] = useState(ALL_BRANCHES[0]?.slug);
   const hoveredExternal = EXTERNAL_BRANCH_URLS[hovered];
+  const hoveredSections = getSectionsForBranch(hovered);
   return (
     <div className="flex bg-[#FBF9F6] border border-[#0A192F]/15 shadow-xl min-w-[640px]">
       <ul className="w-[320px] border-r border-[#0A192F]/10 py-2">
@@ -107,7 +108,7 @@ function BranchesDropdown({ onNavigate }) {
             </a>
           </li>
         ) : (
-          SECTION_LIST.map((s) => (
+          hoveredSections.map((s) => (
             <li key={s.key}>
               <Link
                 to={`/branches/${hovered}/${s.key}`}
@@ -299,7 +300,7 @@ export default function Header() {
                                 <li>
                                   <Link to={`/branches/${b.slug}`} className="block py-1.5 text-xs text-[#1A5F5A]">Overview</Link>
                                 </li>
-                                {SECTION_LIST.map((s) => (
+                                {getSectionsForBranch(b.slug).map((s) => (
                                   <li key={s.key}>
                                     <Link to={`/branches/${b.slug}/${s.key}`} className="block py-1.5 text-xs text-[#4A5568]">
                                       {s.label}

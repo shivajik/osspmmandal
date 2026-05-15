@@ -1,6 +1,10 @@
 import PageHero from "../components/PageHero";
 import { EXECUTIVE, LEADERSHIP, ORG } from "../data/content";
 import { motion } from "framer-motion";
+import about1 from "../assets/about-1.jpeg";
+import about2 from "../assets/about-2.jpeg";
+import about3 from "../assets/about-3.jpeg";
+import about4 from "../assets/about-4.jpeg";
 
 export default function About() {
   const milestones = [
@@ -9,6 +13,13 @@ export default function About() {
     { year: "2000s", event: "Expansion to Marathi-medium primary & secondary schools" },
     { year: "2010s", event: "Launch of English-medium schools & junior colleges" },
     { year: "Today", event: "11 institutions across Ahmednagar, Jalna & Aurangabad districts" },
+  ];
+
+  const moments = [
+    { src: about1, caption: "Community gathering · auditorium address" },
+    { src: about2, caption: "Student-led classroom session" },
+    { src: about3, caption: "Annual function · keynote on stage" },
+    { src: about4, caption: "Republic Day parade · NCC cadets" },
   ];
 
   return (
@@ -44,6 +55,50 @@ export default function About() {
             <p className="font-body font-light text-[#4A5568] text-base md:text-lg leading-relaxed">
               The Mandal seeks to remove untouchability and bring scientific interaction into the community so it can grow through self-help and natural help. The organization&rsquo;s role is that of a facilitator — helping mobilise communities and channel natural, human and material resources for their own development.
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Moments from the Mandal */}
+      <section className="bg-[#FBF9F6] border-t border-[#0A192F]/10">
+        <div className="max-w-[1400px] mx-auto px-6 md:px-10 py-24">
+          <div className="grid grid-cols-12 gap-8 mb-12 items-end">
+            <div className="col-span-12 md:col-span-8">
+              <div className="label-kicker text-[#1A5F5A] mb-4">In the Field</div>
+              <h2 className="font-display font-medium text-4xl md:text-5xl text-[#0A192F] leading-tight tracking-tight">
+                Moments from the <span className="italic">Mandal.</span>
+              </h2>
+            </div>
+            <div className="col-span-12 md:col-span-4 md:text-right">
+              <p className="font-body text-[#4A5568] text-sm md:text-base">
+                Glimpses from classrooms, ceremonies and community programmes across our institutions.
+              </p>
+            </div>
+          </div>
+          <div className="grid grid-cols-12 gap-4 md:gap-6">
+            {moments.map((m, i) => (
+              <motion.figure
+                key={i}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, delay: i * 0.08 }}
+                className="col-span-12 sm:col-span-6 lg:col-span-3 group"
+              >
+                <div className="relative aspect-[4/5] overflow-hidden bg-[#0A192F]">
+                  <img
+                    src={m.src}
+                    alt={m.caption}
+                    loading="lazy"
+                    className="w-full h-full object-cover grayscale-[10%] group-hover:grayscale-0 group-hover:scale-[1.04] transition-all duration-[1200ms] ease-out"
+                  />
+                  <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[#0A192F]/80 to-transparent pointer-events-none" />
+                </div>
+                <figcaption className="label-kicker text-[#4A5568] mt-3">
+                  {String(i + 1).padStart(2, "0")} · {m.caption}
+                </figcaption>
+              </motion.figure>
+            ))}
           </div>
         </div>
       </section>

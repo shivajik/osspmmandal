@@ -20,6 +20,31 @@ export const EXTERNAL_BRANCH_URLS = {
   "late-vimalbai-g-gaikwad-higher-secondary": "https://vgghss.com/",
 };
 
+// Per-branch overrides for which section keys appear in the navigation.
+// If a branch is not listed here, the full SECTION_LIST is used.
+export const BRANCH_SECTION_KEYS = {
+  "secondary-school-rui": [
+    "about-us",
+    "scholarship-23-24",
+    "ssc-result",
+    "photo-gallery",
+    "contact-us",
+  ],
+  "shree-shaneshwar-secondary-school": [
+    "about-us",
+    "photo-gallery",
+    "contact-us",
+  ],
+};
+
+export function getSectionsForBranch(slug) {
+  const keys = BRANCH_SECTION_KEYS[slug];
+  if (!keys) return SECTION_LIST;
+  return keys
+    .map((k) => SECTION_LIST.find((s) => s.key === k))
+    .filter(Boolean);
+}
+
 // slug (in our app) → section data
 export const BRANCH_SECTIONS = {
   "late-kishanrao-dhanve-secondary-school": {

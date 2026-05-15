@@ -1,6 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import { ALL_BRANCHES } from "../data/content";
-import { getBranchSection, SECTION_LIST } from "../data/branchSections";
+import { getBranchSection, getSectionsForBranch } from "../data/branchSections";
 import PageHero from "../components/PageHero";
 import { ArrowLeft, FileText, Construction, Mail, Phone, MapPin } from "lucide-react";
 
@@ -145,7 +145,7 @@ export default function BranchSection() {
         <div className="mt-16 pt-10 border-t border-[#0A192F]/10">
           <div className="label-kicker text-[#1A5F5A] mb-4">More from {branch.name}</div>
           <div className="flex flex-wrap gap-2">
-            {SECTION_LIST.filter((s) => s.key !== sectionKey).map((s) => (
+            {getSectionsForBranch(slug).filter((s) => s.key !== sectionKey).map((s) => (
               <Link
                 key={s.key}
                 to={`/branches/${branch.slug}/${s.key}`}
