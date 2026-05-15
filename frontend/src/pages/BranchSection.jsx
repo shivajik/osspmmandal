@@ -214,6 +214,25 @@ export default function BranchSection() {
               ))}
             </div>
           </>
+        ) : data.type === "pdf" ? (
+          <>
+            <div className="flex flex-wrap items-end justify-between gap-4 mb-6">
+              <h2 className="font-display text-3xl md:text-4xl text-[#0A192F]">{data.heading}</h2>
+              <a
+                href={data.pdfUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="label-kicker bg-[#0A192F] text-[#FBF9F6] hover:bg-[#D4AF37] hover:text-[#0A192F] transition-colors px-6 py-3"
+              >
+                Open / Download PDF
+              </a>
+            </div>
+            <div className="border border-[#0A192F]/10 bg-white">
+              <object data={data.pdfUrl} type="application/pdf" className="w-full h-[70vh] md:h-[85vh]">
+                <iframe src={data.pdfUrl} title={data.heading} className="w-full h-[70vh] md:h-[85vh]" />
+              </object>
+            </div>
+          </>
         ) : null}
         </div>
       </section>

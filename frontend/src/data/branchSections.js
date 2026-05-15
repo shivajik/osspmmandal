@@ -63,6 +63,11 @@ export function getSectionsForBranch(slug) {
 // slug (in our app) → section data
 export const BRANCH_SECTIONS = {
   "late-kishanrao-dhanve-secondary-school": {
+    "about-us": {
+      type: "pdf",
+      heading: "About — Late. Kisanrao Dhanave Secondary School, Bhardi",
+      pdfUrl: "/school-info/bhardi.pdf",
+    },
     "contact-us": {
       type: "contact",
       heading: "Late. Kisanrao Dhanve High School — Contact",
@@ -122,6 +127,11 @@ export const BRANCH_SECTIONS = {
     },
   },
   "secondary-school-rui": {
+    "about-us": {
+      type: "pdf",
+      heading: "About — Secondary School, Rui-Ambad",
+      pdfUrl: "/school-info/rui.pdf",
+    },
     "scholarship-23-24": {
       type: "scholarships",
       heading: "Scholarship 23-24",
@@ -148,6 +158,13 @@ export const BRANCH_SECTIONS = {
         [10, "2020", "95.65"], [11, "2021", "100"], [12, "2022", "98.03"],
         [13, "2023", "97.91"],
       ],
+    },
+  },
+  "shree-shaneshwar-secondary-school": {
+    "about-us": {
+      type: "pdf",
+      heading: "About — Shree Shaneshwar Secondary School, Limbe Jalgaon",
+      pdfUrl: "/school-info/limbe.pdf",
     },
   },
 };
