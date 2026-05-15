@@ -1,9 +1,9 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, NavLink, useParams } from "react-router-dom";
 import { ALL_BRANCHES, BRANCHES, ORG } from "../data/content";
 import PageHero from "../components/PageHero";
-import { ArrowLeft, MapPin, BookOpen, Calendar, Phone, Mail } from "lucide-react";
+import { ArrowLeft, MapPin, BookOpen, Calendar, Phone, Mail, ChevronRight } from "lucide-react";
 import { motion } from "framer-motion";
-import { SECTION_LIST } from "../data/branchSections";
+import { getSectionsForBranch } from "../data/branchSections";
 
 export default function BranchDetail() {
   const { slug } = useParams();
@@ -30,6 +30,7 @@ export default function BranchDetail() {
   }
 
   const siblings = BRANCHES[branch.division].items.filter((b) => b.slug !== branch.slug);
+  const sections = getSectionsForBranch(branch.slug);
 
   return (
     <div data-testid="branch-detail-page">
@@ -53,7 +54,33 @@ export default function BranchDetail() {
       {/* Overview */}
       <section className="max-w-[1400px] mx-auto px-6 md:px-10 py-16">
         <div className="grid grid-cols-12 gap-10">
-          <div className="col-span-12 md:col-span-7">
+          {/* Sidebar nav */}
+          <aside className="col-span-12 md:col-span-3">
+            <div className="md:sticky md:top-28">
+              <div className="label-kicker text-[#1A5F5A] mb-4">Explore this branch</div>
+              <nav className="border border-[#0A192F]/10 bg-white">
+                <Link
+                  to={`/branches/${branch.slug}`}
+                  className="flex items-center justify-between px-4 py-3 text-sm bg-[#0A192F] text-[#FBF9F6] border-b border-[#0A192F]/10"
+                >
+                  <span>Overview</span>
+                  <ChevronRight size={14} className="opacity-60" />
+                </Link>
+                {sections.map((s) => (
+                  <NavLink
+                    key={s.key}
+                    to={`/branches/${branch.slug}/${s.key}`}
+                    className="flex items-center justify-between px-4 py-3 text-sm border-b last:border-b-0 border-[#0A192F]/10 text-[#0A192F] hover:bg-[#F0F4F8] hover:text-[#1A5F5A] transition-colors"
+                  >
+                    <span>{s.label}</span>
+                    <ChevronRight size={14} className="opacity-50" />
+                  </NavLink>
+                ))}
+              </nav>
+            </div>
+          </aside>
+
+          <div className="col-span-12 md:col-span-5">
             <div className="label-kicker text-[#1A5F5A] mb-4">About the institution</div>
             <h2 className="font-display font-medium text-3xl md:text-4xl text-[#0A192F] leading-tight tracking-tight">
               {branch.divisionTitle.replace(/s$/, "")} in {branch.location.split(",")[branch.location.split(",").length - 1].trim()}
@@ -78,7 +105,7 @@ export default function BranchDetail() {
           </div>
 
           {/* Fact sheet */}
-          <aside className="col-span-12 md:col-span-5 md:pl-10 md:border-l border-[#0A192F]/10">
+          <aside className="col-span-12 md:col-span-4 md:pl-8 md:border-l border-[#0A192F]/10">
             <div className="border border-[#0A192F]/10 bg-[#F0F4F8] p-8 space-y-6">
               <div className="label-kicker text-[#1A5F5A]">At a glance</div>
               <div className="grid grid-cols-1 gap-5">
@@ -136,21 +163,6 @@ export default function BranchDetail() {
           </aside>
         </div>
 
-        {/* Section quick links */}
-        <div className="mt-16 pt-10 border-t border-[#0A192F]/10">
-          <div className="label-kicker text-[#1A5F5A] mb-5">Explore this branch</div>
-          <div className="flex flex-wrap gap-2">
-            {SECTION_LIST.map((s) => (
-              <Link
-                key={s.key}
-                to={`/branches/${branch.slug}/${s.key}`}
-                className="label-kicker border border-[#0A192F]/20 text-[#0A192F] px-4 py-2 hover:bg-[#0A192F] hover:text-[#FBF9F6] transition-colors"
-              >
-                {s.label}
-              </Link>
-            ))}
-          </div>
-        </div>
       </section>
 
       {/* Sibling branches */}

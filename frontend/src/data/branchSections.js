@@ -37,6 +37,21 @@ export const BRANCH_SECTION_KEYS = {
   ],
 };
 
+// Photo gallery slots — files live in /public/gallery/<slug>/photo-N.jpg.
+// Drop your real photos at those paths (or replace this list) and they will
+// appear automatically. Missing files render a labelled placeholder so the
+// layout stays consistent.
+export const BRANCH_GALLERIES = {
+  "om-balak-mandir": Array.from({ length: 9 }, (_, i) => ({
+    src: `/gallery/om-balak-mandir/photo-${i + 1}.jpg`,
+    caption: `Om Balak Mandir · Photo ${i + 1}`,
+  })),
+  "shree-shaneshwar-secondary-school": Array.from({ length: 11 }, (_, i) => ({
+    src: `/gallery/shree-shaneshwar-secondary-school/photo-${i + 1}.jpeg`,
+    caption: `Shree Shaneshwar · Photo ${i + 1}`,
+  })),
+};
+
 export function getSectionsForBranch(slug) {
   const keys = BRANCH_SECTION_KEYS[slug];
   if (!keys) return SECTION_LIST;
@@ -140,7 +155,14 @@ export const BRANCH_SECTIONS = {
 export function getBranchSection(slug, sectionKey) {
   const section = SECTION_LIST.find((s) => s.key === sectionKey);
   if (!section) return null;
-  const data = BRANCH_SECTIONS[slug]?.[sectionKey];
+  let data = BRANCH_SECTIONS[slug]?.[sectionKey];
+  if (!data && sectionKey === "photo-gallery" && BRANCH_GALLERIES[slug]) {
+    data = {
+      type: "gallery",
+      heading: `${section.label}`,
+      photos: BRANCH_GALLERIES[slug],
+    };
+  }
   return { section, data: data || { underConstruction: true, heading: section.label } };
 }
 
