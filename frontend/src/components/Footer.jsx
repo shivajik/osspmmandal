@@ -99,7 +99,17 @@ export default function Footer() {
           <div className="label-kicker text-white/50">
             © {new Date().getFullYear()} {ORG.name}. All rights reserved.
           </div>
-          <div className="label-kicker text-white/50">Crafted with care · Aurangabad</div>
+          <div className="label-kicker text-white/50">
+            Designed & Developed by{" "}
+            <a
+              href="https://ksoftsolution.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white hover:text-white/80 transition-colors"
+            >
+              KSoft Solution
+            </a>
+          </div>
         </div>
       </div>
     </footer>
