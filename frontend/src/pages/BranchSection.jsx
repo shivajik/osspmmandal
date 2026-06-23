@@ -108,10 +108,91 @@ function DynamicGallery({ manifestUrl, folder, captionPrefix }) {
     );
   }
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-      {photos.map((p) => (
-        <GalleryImage key={p.src} src={p.src} caption={p.caption} />
-      ))}
+    <PaginatedGallery photos={photos} />
+  );
+}
+
+function PaginatedGallery({ photos, perPage = 12 }) {
+  const [page, setPage] = useState(1);
+  const totalPages = Math.max(1, Math.ceil(photos.length / perPage));
+  const current = Math.min(page, totalPages);
+  const start = (current - 1) * perPage;
+  const visible = photos.slice(start, start + perPage);
+
+  useEffect(() => {
+    setPage(1);
+  }, [photos]);
+
+  const goTo = (p) => {
+    setPage(p);
+    if (typeof window !== "undefined") {
+      window.scrollTo({ top: window.scrollY - 80, behavior: "smooth" });
+    }
+  };
+
+  const pageNumbers = [];
+  for (let i = 1; i <= totalPages; i++) {
+    if (
+      i === 1 ||
+      i === totalPages ||
+      (i >= current - 1 && i <= current + 1)
+    ) {
+      pageNumbers.push(i);
+    } else if (pageNumbers[pageNumbers.length - 1] !== "…") {
+      pageNumbers.push("…");
+    }
+  }
+
+  return (
+    <div>
+      <div className="flex items-center justify-between mb-6 label-kicker text-[#4A5568]">
+        <span>
+          Showing <span className="text-[#0A192F]">{start + 1}–{start + visible.length}</span> of {photos.length}
+        </span>
+        <span>
+          Page {current} / {totalPages}
+        </span>
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {visible.map((p) => (
+          <GalleryImage key={p.src} src={p.src} caption={p.caption} />
+        ))}
+      </div>
+      {totalPages > 1 && (
+        <div className="flex items-center justify-center gap-2 mt-10 flex-wrap">
+          <button
+            onClick={() => goTo(Math.max(1, current - 1))}
+            disabled={current === 1}
+            className="label-kicker px-4 py-2 border border-[#0A192F]/20 text-[#0A192F] hover:bg-[#0A192F] hover:text-[#FBF9F6] transition-colors disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:hover:text-[#0A192F]"
+          >
+            ← Prev
+          </button>
+          {pageNumbers.map((n, i) =>
+            n === "…" ? (
+              <span key={`e${i}`} className="px-2 text-[#4A5568]">…</span>
+            ) : (
+              <button
+                key={n}
+                onClick={() => goTo(n)}
+                className={`label-kicker w-10 h-10 border transition-colors ${
+                  n === current
+                    ? "bg-[#0A192F] text-[#FBF9F6] border-[#0A192F]"
+                    : "border-[#0A192F]/20 text-[#0A192F] hover:border-[#D4AF37] hover:text-[#D4AF37]"
+                }`}
+              >
+                {n}
+              </button>
+            )
+          )}
+          <button
+            onClick={() => goTo(Math.min(totalPages, current + 1))}
+            disabled={current === totalPages}
+            className="label-kicker px-4 py-2 border border-[#0A192F]/20 text-[#0A192F] hover:bg-[#0A192F] hover:text-[#FBF9F6] transition-colors disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:hover:text-[#0A192F]"
+          >
+            Next →
+          </button>
+        </div>
+      )}
     </div>
   );
 }
