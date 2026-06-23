@@ -12,7 +12,7 @@ export default function About() {
     { year: "1996", event: "Registered under Mumbai Public Trust Act — F-3437 (AUR)" },
     { year: "2000s", event: "Expansion to Marathi-medium primary & secondary schools" },
     { year: "2010s", event: "Launch of English-medium schools & junior colleges" },
-    { year: "Today", event: "11 institutions across Ahmednagar, Jalna & Aurangabad districts" },
+    { year: "Today", event: "12 institutions across Ahmednagar, Jalna & Chhatrapati Sambhajinagar districts" },
   ];
 
   const moments = [

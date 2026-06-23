@@ -162,7 +162,7 @@ export default function Contact() {
         <div className="max-w-[1400px] mx-auto px-6 md:px-10 py-16">
           <div className="label-kicker text-[#D4AF37] mb-4">Find Us</div>
           <h3 className="font-display text-3xl md:text-4xl text-[#FBF9F6] leading-tight mb-8">
-            Samrat Nagar, Aurangabad 431001
+            Samrat Nagar, Chhatrapati Sambhajinagar 431001
           </h3>
           <div className="aspect-[16/6] overflow-hidden border border-white/10">
             <iframe
@@ -170,7 +170,7 @@ export default function Contact() {
               className="w-full h-full"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              src="https://www.google.com/maps?q=Samrat+Nagar,+Aurangabad+431001&output=embed"
+              src="https://www.google.com/maps?q=Samrat+Nagar,+Chhatrapati Sambhajinagar+431001&output=embed"
             />
           </div>
         </div>

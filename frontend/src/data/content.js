@@ -3,7 +3,7 @@
 export const ORG = {
   name: "Om Shivkrupa Shikshan Prasarak Mandal",
   shortName: "OSSPM",
-  location: "Chh. Sambhaji Nagar (Aurangabad), Maharashtra",
+  location: "Chhatrapati Sambhajinagar, Maharashtra",
   tagline: "Empowering Rural Maharashtra Through Education",
   founded: "1996",
   registration:
@@ -13,7 +13,7 @@ export const ORG = {
   address: {
     line1: "Plot No 43, Gut No-91 Part, Samrat Nagar,",
     line2: "Behind Bembde Hospital, By Pass Satara area,",
-    line3: "Aurangabad 431001, Maharashtra, India",
+    line3: "Chhatrapati Sambhajinagar 431001, Maharashtra, India",
   },
   phones: ["7588023221", "8600144259", "9890560688"],
   email: "spmandal309@gmail.com",
@@ -70,7 +70,7 @@ export const BRANCHES = {
   marathi: {
     title: "Marathi Schools",
     kicker: "Primary & Secondary",
-    count: 6,
+    count: 7,
     division: "marathi",
     items: [
       {
@@ -106,7 +106,7 @@ export const BRANCHES = {
       {
         slug: "shree-shaneshwar-secondary-school",
         name: "Shree Shaneshwar Secondary School",
-        location: "Limbe Jalgaon, Tq. Gangapur, Dist. Aurangabad",
+        location: "Limbe Jalgaon, Tq. Gangapur, Dist. Chhatrapati Sambhajinagar",
         medium: "Marathi",
         programs: ["Std. V", "Std. VI", "Std. VII", "Std. VIII", "Std. IX", "Std. X (SSC)"],
         established: "2007",
@@ -114,19 +114,19 @@ export const BRANCHES = {
           "Located in Limbe Jalgaon, the school provides affordable secondary education with strong outcomes in SSC board exams and a vibrant cultural calendar.",
       },
       {
-        slug: "om-madhyamic-vidyalay",
-        name: "Om Madhyamic Vidyalay",
-        location: "Sahakar Nagar, Aurangabad",
+        slug: "om-secondary-school",
+        name: "Om Secondary School",
+        location: "Sahakar Nagar, Chhatrapati Sambhajinagar",
         medium: "Marathi",
         programs: ["Std. V", "Std. VI", "Std. VII", "Std. VIII", "Std. IX", "Std. X (SSC)"],
         established: "2010",
         about:
-          "OSSPM's urban Marathi-medium school in Sahakar Nagar, Aurangabad. Houses smart classrooms, a computer lab, library and a dedicated sports ground.",
+          "OSSPM's urban Marathi-medium school in Sahakar Nagar, Chhatrapati Sambhajinagar. Houses smart classrooms, a computer lab, library and a dedicated sports ground.",
       },
       {
         slug: "om-balak-mandir",
         name: "Om Balak Mandir",
-        location: "Sahakar Nagar, Aurangabad",
+        location: "Sahakar Nagar, Chhatrapati Sambhajinagar",
         medium: "Marathi",
         programs: ["Nursery", "Jr. KG", "Sr. KG", "Std. I – IV"],
         established: "2010",
@@ -138,7 +138,7 @@ export const BRANCHES = {
   english: {
     title: "English Schools",
     kicker: "CBSE / State Medium",
-    count: 2,
+    count: 3,
     division: "english",
     items: [
       {
@@ -160,6 +160,16 @@ export const BRANCHES = {
         established: "2012",
         about:
           "An English-medium school at Rui designed to make English-medium education accessible to families from surrounding villages at affordable fees.",
+      },
+      {
+        slug: "the-tesla-high-school",
+        name: "The Tesla High School",
+        location: "Deolai Area, Chhatrapati Sambhajinagar",
+        medium: "English",
+        programs: ["Nursery", "Jr. KG", "Sr. KG", "Std. I – X"],
+        established: "—",
+        about:
+          "OSSPM's English-medium high school in the Deolai area of Chhatrapati Sambhajinagar — a modern, urban campus offering primary and secondary education with a focus on STEM, communication and holistic development.",
       },
     ],
   },
@@ -192,7 +202,7 @@ export const BRANCHES = {
       {
         slug: "shree-shaneshwar-higher-secondary",
         name: "Shree Shaneshwar Higher Secondary School",
-        location: "Limbe Jalgaon, Tq. Gangapur, Dist. Aurangabad",
+        location: "Limbe Jalgaon, Tq. Gangapur, Dist. Chhatrapati Sambhajinagar",
         medium: "Marathi",
         programs: ["Std. XI Science", "Std. XII Science", "Std. XI Arts", "Std. XII Arts"],
         established: "2014",
@@ -212,7 +222,7 @@ export const VALUES = [
   {
     n: "01",
     title: "Access for the rural learner",
-    body: "Bringing affordable, high-quality schooling to villages across Ahmednagar, Jalna and Aurangabad — the children whose parents had no school to attend.",
+    body: "Bringing affordable, high-quality schooling to villages across Ahmednagar, Jalna and Chhatrapati Sambhajinagar — the children whose parents had no school to attend.",
   },
   {
     n: "02",
@@ -222,7 +232,7 @@ export const VALUES = [
   {
     n: "03",
     title: "Mother-tongue first",
-    body: "We believe a child learns fastest in her own language. Six Marathi-medium schools sit at the core of OSSPM, complemented by English-medium options.",
+    body: "We believe a child learns fastest in her own language. Seven Marathi-medium schools sit at the core of OSSPM, complemented by English-medium options.",
   },
   {
     n: "04",
@@ -275,13 +285,13 @@ export const NEWS = [
     category: "Milestone",
     title: "OSSPM Foundation Day — 29 years of serving rural Maharashtra",
     excerpt:
-      "Since 1996 the Mandal has been committed to providing quality education and social upliftment across Ahmednagar, Jalna and Aurangabad districts.",
+      "Since 1996 the Mandal has been committed to providing quality education and social upliftment across Ahmednagar, Jalna and Chhatrapati Sambhajinagar districts.",
   },
   {
     id: "digital-classrooms",
     date: "New at OSSPM",
     category: "Infrastructure",
-    title: "Digital classrooms rolled out at Om Madhyamic Vidyalay",
+    title: "Digital classrooms rolled out at Om Secondary School",
     excerpt:
       "Smart boards, projectors and a dedicated computer lab strengthen STEM learning for students at our Sahakar Nagar campus.",
   },
@@ -321,7 +331,7 @@ export const ADMISSION_STEPS = [
 export const FAQ = [
   {
     q: "Which medium of instruction is offered?",
-    a: "OSSPM runs 6 Marathi-medium schools, 2 English-medium schools and 3 higher-secondary / junior colleges across Ahmednagar, Jalna and Aurangabad districts.",
+    a: "OSSPM runs 7 Marathi-medium schools, 3 English-medium schools and 3 higher-secondary / junior colleges across Ahmednagar, Jalna and Chhatrapati Sambhajinagar districts.",
   },
   {
     q: "Do you provide scholarships or fee concessions?",
@@ -337,7 +347,7 @@ export const FAQ = [
   },
   {
     q: "How do I reach the Trust office?",
-    a: "Our registered office is at Plot No 43, Gut No-91 Part, Samrat Nagar, Behind Bembde Hospital, By Pass Satara area, Aurangabad 431001.",
+    a: "Our registered office is at Plot No 43, Gut No-91 Part, Samrat Nagar, Behind Bembde Hospital, By Pass Satara area, Chhatrapati Sambhajinagar 431001.",
   },
 ];
 

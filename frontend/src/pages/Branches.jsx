@@ -87,7 +87,7 @@ export default function Branches() {
       <PageHero
         kicker="Branches · Eleven Institutions"
         title={<>Our network across <span className="italic text-[#D4AF37]">rural</span> Maharashtra.</>}
-        subtitle="Six Marathi-medium schools, two English-medium schools, and three colleges — serving students across Ahmednagar, Jalna and Aurangabad districts."
+        subtitle="Seven Marathi-medium schools, three English-medium schools, and three colleges — serving students across Ahmednagar, Jalna and Chhatrapati Sambhajinagar districts."
       />
 
       <Section data={BRANCHES.marathi} colorKey="marathi" index={1} />

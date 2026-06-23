@@ -16,7 +16,7 @@ export default function Footer() {
               <span className="italic text-[#D4AF37]">reaches</span> the last village.
             </h2>
             <p className="font-body font-light text-white/70 text-base md:text-lg mt-8 max-w-2xl leading-relaxed">
-              Om Shivkrupa Shikshan Prasarak Mandal serves rural and marginalized communities across Ahmednagar, Jalna and Aurangabad through 11 institutions spanning primary, secondary and higher-secondary education.
+              Om Shivkrupa Shikshan Prasarak Mandal serves rural and marginalized communities across Ahmednagar, Jalna and Chhatrapati Sambhajinagar through 12 institutions spanning primary, secondary and higher-secondary education.
             </p>
           </div>
           <div className="col-span-12 md:col-span-4 md:pl-8 md:border-l border-white/10">

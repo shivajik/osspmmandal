@@ -39,7 +39,7 @@ export default function Home() {
                 through <span className="text-[#D4AF37]">education.</span>
               </h1>
               <p className="font-body font-light text-[#4A5568] text-base md:text-lg mt-8 max-w-xl leading-relaxed">
-                A non-governing educational trust serving Ahmednagar, Jalna and Aurangabad — uplifting marginalized communities through 11 schools and colleges rooted in scholarship, dignity and access.
+                A non-governing educational trust serving Ahmednagar, Jalna and Chhatrapati Sambhajinagar — uplifting marginalized communities through 12 schools and colleges rooted in scholarship, dignity and access.
               </p>
 
               <div className="mt-10 flex flex-wrap gap-4">
@@ -77,7 +77,7 @@ export default function Home() {
                 <div className="absolute bottom-6 left-6 right-6 text-[#FBF9F6]">
                   <div className="label-kicker text-[#D4AF37] mb-2">Featured Campus</div>
                   <div className="font-display text-2xl md:text-3xl leading-tight">
-                    Om Madhyamic Vidyalay — Sahakar Nagar
+                    Om Secondary School — Sahakar Nagar
                   </div>
                 </div>
               </div>
@@ -188,7 +188,7 @@ export default function Home() {
             <div className="label-kicker text-[#4A5568] mt-10 mb-3">Primary & Secondary</div>
             <h3 className="font-display text-3xl md:text-4xl text-[#0A192F] leading-tight">{BRANCHES.marathi.title}</h3>
             <p className="font-body text-[#4A5568] mt-4 max-w-md">
-              Marathi-medium schools rooted in rural communities across Ahmednagar, Jalna and Aurangabad districts.
+              Marathi-medium schools rooted in rural communities across Ahmednagar, Jalna and Chhatrapati Sambhajinagar districts.
             </p>
           </motion.div>
 
