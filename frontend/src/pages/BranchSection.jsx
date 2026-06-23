@@ -197,6 +197,104 @@ function PaginatedGallery({ photos, perPage = 12 }) {
   );
 }
 
+function AcademicYears({ data }) {
+  const years = data.years || [];
+  const [activeYear, setActiveYear] = useState(years[0]?.year);
+  const current = years.find((y) => y.year === activeYear) || years[0];
+
+  return (
+    <>
+      <h2 className="font-display text-3xl md:text-4xl text-[#0A192F] mb-3">{data.heading}</h2>
+      <p className="font-body text-[#4A5568] mb-8 max-w-2xl">
+        Browse academic year results — toppers, board-exam high-scorers and
+        admissions to leading medical and engineering colleges.
+      </p>
+
+      <div className="flex flex-wrap gap-2 mb-10 border-b border-[#0A192F]/10 pb-4">
+        {years.map((y) => (
+          <button
+            key={y.year}
+            onClick={() => setActiveYear(y.year)}
+            className={`label-kicker px-5 py-3 border transition-colors ${
+              y.year === current.year
+                ? "bg-[#0A192F] text-[#FBF9F6] border-[#0A192F]"
+                : "border-[#0A192F]/20 text-[#0A192F] hover:border-[#D4AF37] hover:text-[#D4AF37]"
+            }`}
+          >
+            {y.year}
+          </button>
+        ))}
+      </div>
+
+      {current?.tables.map((t, ti) => (
+        <AcademicTable key={`${current.year}-${ti}`} table={t} />
+      ))}
+    </>
+  );
+}
+
+function AcademicTable({ table, perPage = 25 }) {
+  const [page, setPage] = useState(1);
+  const total = table.rows.length;
+  const totalPages = Math.max(1, Math.ceil(total / perPage));
+  const cur = Math.min(page, totalPages);
+  const start = (cur - 1) * perPage;
+  const visible = table.rows.slice(start, start + perPage);
+
+  useEffect(() => {
+    setPage(1);
+  }, [table]);
+
+  return (
+    <div className="mb-12">
+      <h3 className="font-display text-xl md:text-2xl text-[#0A192F] mb-4">{table.title}</h3>
+      <div className="label-kicker text-[#4A5568] mb-3">
+        {total} {total === 1 ? "entry" : "entries"}
+        {totalPages > 1 && <> · Page {cur} / {totalPages}</>}
+      </div>
+      <div className="overflow-x-auto border border-[#0A192F]/10">
+        <table className="w-full text-left">
+          <thead>
+            <tr className="bg-[#0A192F] text-[#FBF9F6]">
+              {table.columns.map((c) => (
+                <th key={c} className="label-kicker px-5 py-3 font-normal whitespace-nowrap">{c}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {visible.map((row, i) => (
+              <tr key={i} className={i % 2 ? "bg-[#F0F4F8]" : "bg-white"}>
+                {row.map((cell, j) => (
+                  <td key={j} className="px-5 py-3 font-body text-[#0A192F]">{cell}</td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      {totalPages > 1 && (
+        <div className="flex items-center justify-center gap-2 mt-6 flex-wrap">
+          <button
+            onClick={() => setPage(Math.max(1, cur - 1))}
+            disabled={cur === 1}
+            className="label-kicker px-4 py-2 border border-[#0A192F]/20 text-[#0A192F] hover:bg-[#0A192F] hover:text-[#FBF9F6] transition-colors disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:hover:text-[#0A192F]"
+          >
+            ← Prev
+          </button>
+          <span className="label-kicker text-[#4A5568] px-3">{cur} / {totalPages}</span>
+          <button
+            onClick={() => setPage(Math.min(totalPages, cur + 1))}
+            disabled={cur === totalPages}
+            className="label-kicker px-4 py-2 border border-[#0A192F]/20 text-[#0A192F] hover:bg-[#0A192F] hover:text-[#FBF9F6] transition-colors disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:hover:text-[#0A192F]"
+          >
+            Next →
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function BranchSection() {
   const { slug, section: sectionKey } = useParams();
   const branch = ALL_BRANCHES.find((b) => b.slug === slug);
@@ -441,6 +539,8 @@ export default function BranchSection() {
               </object>
             </div>
           </>
+        ) : data.type === "academic-years" ? (
+          <AcademicYears data={data} />
         ) : null}
         </div>
       </section>
