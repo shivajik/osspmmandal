@@ -400,13 +400,9 @@ export default function BranchSection() {
           <>
             <h2 className="font-display text-3xl md:text-4xl text-[#0A192F] mb-3">{data.heading}</h2>
             <p className="font-body text-[#4A5568] mb-8 max-w-2xl">
-              Replace each placeholder by saving your image at the path shown on the tile.
+              Browse photographs from this branch.
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-              {data.photos.map((p) => (
-                <GalleryImage key={p.src} src={p.src} caption={p.caption} />
-              ))}
-            </div>
+            <PaginatedGallery photos={data.photos} />
           </>
         ) : data.type === "toppers" ? (
           <>
