@@ -4,7 +4,7 @@
 const SECTION_LIST = [
   { key: "about-us", label: "About Us" },
   { key: "scholarship-23-24", label: "Scholarship 23-24" },
-  { key: "ssc-result", label: "SSC Result 2004 to 2023" },
+  { key: "ssc-result", label: "SSC Result" },
   { key: "photo-gallery", label: "Photo Gallery" },
   { key: "sports-achievements", label: "Sports Achievements" },
   { key: "contact-us", label: "Contact Us" },
@@ -12,12 +12,20 @@ const SECTION_LIST = [
 
 const PDF = (path) => `https://osspmandal.com/wp-content/uploads/${path}`;
 
+// Extra section keys only used by some branches (e.g. junior colleges).
+const EXTRA_SECTIONS = [
+  { key: "hsc-result", label: "HSC Result" },
+  { key: "toppers", label: "Toppers" },
+];
+
+const ALL_SECTIONS = [...SECTION_LIST, ...EXTRA_SECTIONS];
+
 // Branches that link directly to a real external website rather than using
 // our internal /branches/:slug routes. When set, the header dropdown opens
 // the URL in a new tab and the branch detail / section pages are skipped.
 export const EXTERNAL_BRANCH_URLS = {
-  "adarsh-junior-college": "https://adarshjcollege.com/",
-  "late-vimalbai-g-gaikwad-higher-secondary": "https://vgghss.com/",
+  // The junior colleges now have internal pages with HSC results and
+  // toppers, so they are no longer treated as external-only branches.
 };
 
 // Per-branch overrides for which section keys appear in the navigation.
@@ -32,15 +40,30 @@ export const BRANCH_SECTION_KEYS = {
   ],
   "shree-shaneshwar-secondary-school": [
     "about-us",
+    "ssc-result",
     "photo-gallery",
+    "contact-us",
+  ],
+  "shree-shaneshwar-higher-secondary": [
+    "about-us",
+    "hsc-result",
+    "contact-us",
+  ],
+  "adarsh-junior-college": [
+    "about-us",
+    "hsc-result",
+    "toppers",
+    "contact-us",
+  ],
+  "late-vimalbai-g-gaikwad-higher-secondary": [
+    "about-us",
+    "hsc-result",
+    "toppers",
     "contact-us",
   ],
 };
 
 // Photo gallery slots — files live in /public/gallery/<slug>/photo-N.jpg.
-// Drop your real photos at those paths (or replace this list) and they will
-// appear automatically. Missing files render a labelled placeholder so the
-// layout stays consistent.
 export const BRANCH_GALLERIES = {
   "om-balak-mandir": Array.from({ length: 9 }, (_, i) => ({
     src: `/gallery/om-balak-mandir/photo-${i + 1}.jpg`,
@@ -56,7 +79,7 @@ export function getSectionsForBranch(slug) {
   const keys = BRANCH_SECTION_KEYS[slug];
   if (!keys) return SECTION_LIST;
   return keys
-    .map((k) => SECTION_LIST.find((s) => s.key === k))
+    .map((k) => ALL_SECTIONS.find((s) => s.key === k))
     .filter(Boolean);
 }
 
@@ -98,16 +121,32 @@ export const BRANCH_SECTIONS = {
     },
     "ssc-result": {
       type: "results",
-      heading: "LKDSS – SSC Result 2004 to 2023",
-      columns: ["Sr.", "Year", "Result %"],
+      heading: "LKDSS – SSC Result (Latest First)",
+      columns: ["Sr.", "Academic Year", "Result %"],
       rows: [
-        [1, "2004", "83.33"], [2, "2005", "21.21"], [3, "2006", "56.25"],
-        [4, "2007", "87.5"], [5, "2008", "94.11"], [6, "2009", "100"],
-        [7, "2010", "100"], [8, "2011", "28.13"], [9, "2012", "76.67"],
-        [10, "2013", "80.77"], [11, "2014", "84.62"], [12, "2015", "92.11"],
-        [13, "2016", "80"], [14, "2017", "100"], [15, "2018", "86.11"],
-        [16, "2019", "62.74"], [17, "2020", "92.85"], [18, "2021", "100"],
-        [19, "2022", "100"], [20, "2023", "90.47"],
+        [1, "Feb 2026", "88.63%"],
+        [2, "March 2025", "100%"],
+        [3, "March 2024", "90.77%"],
+        [4, "2023", "90.47%"],
+        [5, "2022", "100%"],
+        [6, "2021", "100%"],
+        [7, "2020", "92.85%"],
+        [8, "2019", "62.74%"],
+        [9, "2018", "86.11%"],
+        [10, "2017", "100%"],
+        [11, "2016", "80%"],
+        [12, "2015", "92.11%"],
+        [13, "2014", "84.62%"],
+        [14, "2013", "80.77%"],
+        [15, "2012", "76.67%"],
+        [16, "2011", "28.13%"],
+        [17, "2010", "100%"],
+        [18, "2009", "100%"],
+        [19, "2008", "94.11%"],
+        [20, "2007", "87.5%"],
+        [21, "2006", "56.25%"],
+        [22, "2005", "21.21%"],
+        [23, "2004", "83.33%"],
       ],
     },
     "sports-achievements": {
@@ -149,14 +188,25 @@ export const BRANCH_SECTIONS = {
     },
     "ssc-result": {
       type: "results",
-      heading: "SSC Result 2011 to 2023",
-      columns: ["Sr.", "Year", "Result %"],
+      heading: "Secondary School, Rui — SSC Result (Latest First)",
+      columns: ["Year", "Appeared", "Passed", "Failed", "Result %"],
       rows: [
-        [1, "2011", "24"], [2, "2012", "55.17"], [3, "2013", "76.67"],
-        [4, "2014", "96.88"], [5, "2015", "91.18"], [6, "2016", "83.87"],
-        [7, "2017", "97.06"], [8, "2018", "86.54"], [9, "2019", "92.15"],
-        [10, "2020", "95.65"], [11, "2021", "100"], [12, "2022", "98.03"],
-        [13, "2023", "97.91"],
+        ["Feb 2026", "62", "59", "3", "95.16%"],
+        ["March 2025", "50", "50", "0", "100%"],
+        ["March 2024", "47", "46", "1", "97.87%"],
+        ["2023", "—", "—", "—", "97.91%"],
+        ["2022", "—", "—", "—", "98.03%"],
+        ["2021", "—", "—", "—", "100%"],
+        ["2020", "—", "—", "—", "95.65%"],
+        ["2019", "—", "—", "—", "92.15%"],
+        ["2018", "—", "—", "—", "86.54%"],
+        ["2017", "—", "—", "—", "97.06%"],
+        ["2016", "—", "—", "—", "83.87%"],
+        ["2015", "—", "—", "—", "91.18%"],
+        ["2014", "—", "—", "—", "96.88%"],
+        ["2013", "—", "—", "—", "76.67%"],
+        ["2012", "—", "—", "—", "55.17%"],
+        ["2011", "—", "—", "—", "24%"],
       ],
     },
   },
@@ -166,11 +216,182 @@ export const BRANCH_SECTIONS = {
       heading: "About — Shree Shaneshwar Secondary School, Limbe Jalgaon",
       pdfUrl: "/school-info/limbe.pdf",
     },
+    "ssc-result": {
+      type: "results",
+      heading: "Shree Shaneshwar Secondary School — SSC Result (Latest First)",
+      columns: ["Year", "School Result %"],
+      rows: [
+        ["2026", "86.66%"],
+        ["2025", "98.57%"],
+        ["2024", "98.41%"],
+        ["2023", "100%"],
+        ["2022", "100%"],
+        ["2021", "100%"],
+        ["2020", "90.38%"],
+        ["2019", "85.71%"],
+        ["2018", "97.44%"],
+        ["2017", "98.14%"],
+        ["2016", "97.73%"],
+        ["2015", "97.44%"],
+        ["2014", "96.67%"],
+        ["2013", "96.30%"],
+        ["2012", "47.62%"],
+        ["2011", "25.81%"],
+      ],
+    },
+  },
+  "shree-shaneshwar-higher-secondary": {
+    "hsc-result": {
+      type: "results",
+      heading:
+        "Shree Shaneshwar Higher Secondary — HSC Result (Latest First)",
+      columns: ["Year", "Arts", "Science"],
+      rows: [
+        ["2026", "53.84%", "46.66%"],
+        ["2025", "100%", "100%"],
+        ["2024", "100%", "—"],
+        ["2023", "33.33%", "—"],
+        ["2022", "100%", "—"],
+        ["2021", "100%", "100%"],
+        ["2020", "30.00%", "100%"],
+        ["2019", "85.71%", "100%"],
+      ],
+    },
+  },
+  "adarsh-junior-college": {
+    "about-us": {
+      type: "info",
+      heading: "About — Adarsh Junior College, Gaikwad Jalgaon",
+      paragraphs: [
+        "Adarsh Junior College is part of the Om Shivkrupa Shikshan Prasarak Mandal network of institutions, serving students in Gaikwad Jalgaon, Tal. Shevgaon, Dist. Ahmednagar.",
+        "Year on year, students of Adarsh Junior College have ranked among the top performers of the H.S.C. board, with a strong tradition of academic excellence.",
+      ],
+      externalUrl: "https://adarshjcollege.com/",
+    },
+    "hsc-result": {
+      type: "results",
+      heading: "Adarsh Junior College — H.S.C. 2022 · Students Above 90%",
+      columns: ["Sr.", "Name of Student", "Percentage"],
+      rows: [
+        [1, "Gunjkar Aishwarya Prabodh", "95.83%"],
+        [2, "Jige Kirti Parmeshwar", "95.50%"],
+        [3, "Dhonde Manasi Manohar", "95.50%"],
+        [4, "Nalawade Sanika Prashant", "95.50%"],
+        [5, "Mule Sagar Mukundrao", "95.17%"],
+        [6, "Surana Diya Sachin", "95.17%"],
+        [7, "Lahane Rasika Sudhir", "95.00%"],
+        [8, "Puri Aditi Sanjay", "94.83%"],
+        [9, "Kulkarni Shreekar Atul", "94.83%"],
+        [10, "Ukhalkar Shubham Kulbhushan", "94.83%"],
+        [11, "Gehi Khushi Deepak", "94.50%"],
+        [12, "More Ritesh Vijaykumar", "94.33%"],
+        [13, "Kulkarni Vrushali Ravindra", "94.33%"],
+        [14, "Rode Janhavi Bhimrao", "94.17%"],
+        [15, "Gaikwad Sanjyot Nandkumar", "94.00%"],
+        [16, "Takle Gayatri Balkrishna", "94.00%"],
+        [17, "Ugale Gaurav Shamsundar", "94.00%"],
+        [18, "Lahane Rutuja Sachin", "94.00%"],
+        [19, "Kakade Akanksha Nanabhau", "93.83%"],
+        [20, "Brahme Swara Shailesh", "93.83%"],
+        [21, "Kulkarni Samiksha Sanjay", "93.83%"],
+        [22, "Garad Vedika Vidyadhar", "93.67%"],
+        [23, "Dhule Apeksha Ajay", "93.67%"],
+        [24, "Nikam Saksham Subhash", "93.67%"],
+        [25, "Patil Vaishnavi Kishor", "93.67%"],
+        [26, "Kulkarni Vaishnavi Ashok", "93.67%"],
+        [27, "Naik Disha Ranjit", "93.50%"],
+        [28, "Muley Sagar Chakrapani", "93.50%"],
+        [29, "Tikande Abhijeet Ramesh", "93.50%"],
+        [30, "Danekar Aniket Ganeshappa", "93.50%"],
+      ],
+      footnote:
+        "Showing top 30 of 142 students who scored above 90% in H.S.C. 2022. Full merit list available with the college office.",
+    },
+    "toppers": {
+      type: "gallery",
+      heading: "Adarsh Junior College — H.S.C. 2022 Toppers",
+      photos: [
+        { src: "/toppers/adarsh/adarsh-image1.jpeg", caption: "H.S.C. 2022 Topper" },
+        { src: "/toppers/adarsh/adarsh-image2.jpeg", caption: "H.S.C. 2022 Topper" },
+        { src: "/toppers/adarsh/adarsh-image3.jpeg", caption: "H.S.C. 2022 Topper" },
+        { src: "/toppers/adarsh/adarsh-image4.jpeg", caption: "H.S.C. 2022 Topper" },
+        { src: "/toppers/adarsh/adarsh-image5.jpeg", caption: "H.S.C. 2022 Topper" },
+      ],
+    },
+    "contact-us": {
+      type: "contact",
+      heading: "Adarsh Junior College — Contact",
+      address: "Gaikwad Jalgaon, Tal. Shevgaon, Dist. Ahmednagar",
+      website: "https://adarshjcollege.com/",
+    },
+  },
+  "late-vimalbai-g-gaikwad-higher-secondary": {
+    "about-us": {
+      type: "info",
+      heading:
+        "About — Late. Vimalbai G. Gaikwad Higher Secondary College",
+      paragraphs: [
+        "Late. Vimalbai Gangadhar Gaikwad Secondary & Higher Secondary College is located in Gaikwad Jalgaon, Tal. Shevgaon, Dist. Ahmednagar.",
+        "The college consistently produces high-performing students in the H.S.C. board examinations, with dozens of students every year scoring 90% and above.",
+      ],
+      externalUrl: "https://vgghss.com/",
+    },
+    "hsc-result": {
+      type: "results",
+      heading: "Late. V.G. Gaikwad H.S.C. 2022 · Students Above 90%",
+      columns: ["Sr.", "Name of Student", "Percentage"],
+      rows: [
+        [1, "Kangne Rushikesh Vishnu", "95.50%"],
+        [2, "Kachole Aakanksha Sunil", "95.33%"],
+        [3, "Theng Madhura Sureshrao", "95.33%"],
+        [4, "Bewle Siddhi Asaram", "95.17%"],
+        [5, "Giri Gayatri Mahadev", "95.17%"],
+        [6, "Pawar Riya Sahebrao", "94.67%"],
+        [7, "Murkute Gayatri Shridhar", "94.50%"],
+        [8, "Ranveer Shivani Jeevan", "94.50%"],
+        [9, "Gahilod Kiran Kishansing", "94.50%"],
+        [10, "Kade Aryanka Kiran", "94.50%"],
+        [11, "Datir Sarthak Kailas", "94.33%"],
+        [12, "Sapkal Rutuja Sunil", "94.33%"],
+        [13, "Tanpure Gayatri Ashok", "94.17%"],
+        [14, "Shinde Rajnandini Hanuman", "94.17%"],
+        [15, "Payghan Suyash Govind", "94.17%"],
+        [16, "Purohit Abhyuday Kamalkishore", "94.00%"],
+        [17, "Jadhav Rohan Damodharrao", "94.00%"],
+        [18, "Vaishnav Mansi Ajit", "94.00%"],
+        [19, "Garad Aditya Namdev", "94.00%"],
+        [20, "Ware Arya Uddhav", "93.83%"],
+        [21, "Shejul Ashish Rajabhau", "93.83%"],
+        [22, "Katkhade Snehal Gajanan", "93.83%"],
+        [23, "Patil Aditi Arjun", "93.83%"],
+        [24, "Shelke Ritika Vasant", "93.83%"],
+        [25, "Pathe Shreyas Sunil", "93.67%"],
+      ],
+      footnote:
+        "Showing the top 25 students who scored above 90% in H.S.C. 2022.",
+    },
+    "toppers": {
+      type: "gallery",
+      heading: "Late. V.G. Gaikwad College — H.S.C. 2022 Toppers",
+      photos: [
+        { src: "/toppers/vg/vg-image1.jpeg", caption: "H.S.C. 2022 Topper" },
+        { src: "/toppers/vg/vg-image2.jpeg", caption: "H.S.C. 2022 Topper" },
+        { src: "/toppers/vg/vg-image3.jpeg", caption: "H.S.C. 2022 Topper" },
+        { src: "/toppers/vg/vg-image4.jpeg", caption: "H.S.C. 2022 Topper" },
+        { src: "/toppers/vg/vg-image5.jpeg", caption: "H.S.C. 2022 Topper" },
+      ],
+    },
+    "contact-us": {
+      type: "contact",
+      heading: "Late. V.G. Gaikwad College — Contact",
+      address: "Gaikwad Jalgaon, Tal. Shevgaon, Dist. Ahmednagar",
+      website: "https://vgghss.com/",
+    },
   },
 };
 
 export function getBranchSection(slug, sectionKey) {
-  const section = SECTION_LIST.find((s) => s.key === sectionKey);
+  const section = ALL_SECTIONS.find((s) => s.key === sectionKey);
   if (!section) return null;
   let data = BRANCH_SECTIONS[slug]?.[sectionKey];
   if (!data && sectionKey === "photo-gallery" && BRANCH_GALLERIES[slug]) {

@@ -2,52 +2,22 @@ import { useState, useEffect, useCallback } from "react";
 import PageHero from "../components/PageHero";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import about1 from "../assets/about-1.jpeg";
+import about2 from "../assets/about-2.jpeg";
+import about3 from "../assets/about-3.jpeg";
+import about4 from "../assets/about-4.jpeg";
 
-// All images live in /public/gallery — referenced by absolute URL
-const GALLERY_FILES = [
-  "1000297309.jpg",
-  "1000767092.jpg",
-  "1000767124.jpg",
-  "1000767125.jpg",
-  "1000767149.jpg",
-  "1000767215.jpg",
-  "1000767264.jpg",
-  "1000767275.jpg",
-  "1000767278.jpg",
-  "1000767286.jpg",
-  "1001143759.jpg",
-  "1001143762.jpg",
-  "1001345345.jpg",
-  "1001354277.jpg",
-  "1001388347.jpg",
-  "1001388349.jpg",
-  "1002024030.jpg",
-  "1002024143.jpg",
-  "1002069841.jpg",
-  "1002211923.jpg",
-  "1002257370.jpg",
-  "1002257712.jpg",
-  "1002309696.jpg",
-  "1002326422.jpg",
-];
+// Gallery shows the same four signature photos featured on the About page.
+const IMAGES = [
+  { src: about1, category: "Community", caption: "Community gathering · auditorium address" },
+  { src: about2, category: "Classrooms", caption: "Student-led classroom session" },
+  { src: about3, category: "Ceremonies", caption: "Annual function · keynote on stage" },
+  { src: about4, category: "Ceremonies", caption: "Republic Day parade · NCC cadets" },
+].map((img, i) => ({ ...img, index: i }));
 
-const CATEGORIES = [
-  "Campus Life",
-  "Classrooms",
-  "Cultural Events",
-  "Sports & Activities",
-  "Ceremonies",
-  "Community",
-];
-
-const IMAGES = GALLERY_FILES.map((file, i) => ({
-  src: `/gallery/${file}`,
-  category: CATEGORIES[i % CATEGORIES.length],
-  caption: `OSSPM · ${CATEGORIES[i % CATEGORIES.length]}`,
-  index: i,
-}));
-
+const CATEGORIES = Array.from(new Set(IMAGES.map((i) => i.category)));
 const FILTERS = ["All", ...CATEGORIES];
+
 
 export default function Gallery() {
   const [filter, setFilter] = useState("All");

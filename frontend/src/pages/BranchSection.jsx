@@ -167,6 +167,28 @@ export default function BranchSection() {
                 </tbody>
               </table>
             </div>
+            {data.footnote && (
+              <p className="mt-4 text-sm text-[#4A5568] italic">{data.footnote}</p>
+            )}
+          </>
+        ) : data.type === "info" ? (
+          <>
+            <h2 className="font-display text-3xl md:text-4xl text-[#0A192F] mb-6">{data.heading}</h2>
+            <div className="space-y-4 max-w-3xl">
+              {data.paragraphs?.map((p, i) => (
+                <p key={i} className="font-body text-[#0A192F] leading-relaxed">{p}</p>
+              ))}
+            </div>
+            {data.externalUrl && (
+              <a
+                href={data.externalUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex mt-8 label-kicker bg-[#0A192F] text-[#FBF9F6] hover:bg-[#D4AF37] hover:text-[#0A192F] transition-colors px-7 py-4"
+              >
+                Visit Official Website ↗
+              </a>
+            )}
           </>
         ) : data.type === "contact" ? (
           <>
@@ -200,6 +222,13 @@ export default function BranchSection() {
                   <a href={`tel:${p}`} className="font-body text-[#0A192F] hover:text-[#D4AF37]">+91 {p}</a>
                 </div>
               ))}
+              {data.website && (
+                <div className="px-6 py-4">
+                  <a href={data.website} target="_blank" rel="noreferrer" className="font-body text-[#D4AF37] hover:text-[#0A192F] break-all">
+                    {data.website} ↗
+                  </a>
+                </div>
+              )}
             </div>
           </>
         ) : data.type === "gallery" ? (
