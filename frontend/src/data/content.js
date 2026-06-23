@@ -106,12 +106,12 @@ export const BRANCHES = {
       {
         slug: "shree-shaneshwar-secondary-school",
         name: "Shree Shaneshwar Secondary School",
-        location: "Limbe Jalgaon, Tq. Gangapur, Dist. Chhatrapati Sambhajinagar",
+        location: "Limbew Jalgaon, Tq. Gangapur, Dist. Chhatrapati Sambhajinagar",
         medium: "Marathi",
         programs: ["Std. V", "Std. VI", "Std. VII", "Std. VIII", "Std. IX", "Std. X (SSC)"],
         established: "2007",
         about:
-          "Located in Limbe Jalgaon, the school provides affordable secondary education with strong outcomes in SSC board exams and a vibrant cultural calendar.",
+          "Located in Limbew Jalgaon, the school provides affordable secondary education with strong outcomes in SSC board exams and a vibrant cultural calendar.",
       },
       {
         slug: "om-secondary-school",
@@ -202,12 +202,12 @@ export const BRANCHES = {
       {
         slug: "shree-shaneshwar-higher-secondary",
         name: "Shree Shaneshwar Higher Secondary School",
-        location: "Limbe Jalgaon, Tq. Gangapur, Dist. Chhatrapati Sambhajinagar",
+        location: "Limbew Jalgaon, Tq. Gangapur, Dist. Chhatrapati Sambhajinagar",
         medium: "Marathi",
         programs: ["Std. XI Science", "Std. XII Science", "Std. XI Arts", "Std. XII Arts"],
         established: "2014",
         about:
-          "Higher-secondary education at Limbe Jalgaon — bringing Std. XI and XII Science and Arts streams to a region historically underserved at the +2 level.",
+          "Higher-secondary education at Limbew Jalgaon — bringing Std. XI and XII Science and Arts streams to a region historically underserved at the +2 level.",
       },
     ],
   },

@@ -412,7 +412,7 @@ export const BRANCH_SECTIONS = {
   "shree-shaneshwar-secondary-school": {
     "about-us": {
       type: "pdf",
-      heading: "About — Shree Shaneshwar Secondary School, Limbe Jalgaon",
+      heading: "About — Shree Shaneshwar Secondary School, Limbew Jalgaon",
       pdfUrl: "/school-info/limbe.pdf",
     },
     "ssc-result": {
