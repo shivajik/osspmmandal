@@ -308,14 +308,14 @@ export const BRANCH_SECTIONS = {
         "Showing top 30 of 142 students who scored above 90% in H.S.C. 2022. Full merit list available with the college office.",
     },
     "toppers": {
-      type: "gallery",
+      type: "toppers",
       heading: "Adarsh Junior College — H.S.C. 2022 Toppers",
       photos: [
-        { src: "/toppers/adarsh/adarsh-image1.jpeg", caption: "H.S.C. 2022 Topper" },
-        { src: "/toppers/adarsh/adarsh-image2.jpeg", caption: "H.S.C. 2022 Topper" },
-        { src: "/toppers/adarsh/adarsh-image3.jpeg", caption: "H.S.C. 2022 Topper" },
-        { src: "/toppers/adarsh/adarsh-image4.jpeg", caption: "H.S.C. 2022 Topper" },
-        { src: "/toppers/adarsh/adarsh-image5.jpeg", caption: "H.S.C. 2022 Topper" },
+        { src: "/toppers/adarsh/adarsh-image1.jpeg", name: "Gunjkar Aishwarya Prabodh", percentage: "95.83%" },
+        { src: "/toppers/adarsh/adarsh-image2.jpeg", name: "Jige Kirti Parmeshwar", percentage: "95.50%" },
+        { src: "/toppers/adarsh/adarsh-image3.jpeg", name: "Dhonde Manasi Manohar", percentage: "95.50%" },
+        { src: "/toppers/adarsh/adarsh-image4.jpeg", name: "Nalawade Sanika Prashant", percentage: "95.50%" },
+        { src: "/toppers/adarsh/adarsh-image5.jpeg", name: "Mule Sagar Mukundrao", percentage: "95.17%" },
       ],
     },
     "contact-us": {
@@ -371,14 +371,14 @@ export const BRANCH_SECTIONS = {
         "Showing the top 25 students who scored above 90% in H.S.C. 2022.",
     },
     "toppers": {
-      type: "gallery",
+      type: "toppers",
       heading: "Late. V.G. Gaikwad College — H.S.C. 2022 Toppers",
       photos: [
-        { src: "/toppers/vg/vg-image1.jpeg", caption: "H.S.C. 2022 Topper" },
-        { src: "/toppers/vg/vg-image2.jpeg", caption: "H.S.C. 2022 Topper" },
-        { src: "/toppers/vg/vg-image3.jpeg", caption: "H.S.C. 2022 Topper" },
-        { src: "/toppers/vg/vg-image4.jpeg", caption: "H.S.C. 2022 Topper" },
-        { src: "/toppers/vg/vg-image5.jpeg", caption: "H.S.C. 2022 Topper" },
+        { src: "/toppers/vg/vg-image1.jpeg", name: "Kangne Rushikesh Vishnu", percentage: "95.50%" },
+        { src: "/toppers/vg/vg-image2.jpeg", name: "Kachole Aakanksha Sunil", percentage: "95.33%" },
+        { src: "/toppers/vg/vg-image3.jpeg", name: "Theng Madhura Sureshrao", percentage: "95.33%" },
+        { src: "/toppers/vg/vg-image4.jpeg", name: "Bewle Siddhi Asaram", percentage: "95.17%" },
+        { src: "/toppers/vg/vg-image5.jpeg", name: "Giri Gayatri Mahadev", percentage: "95.17%" },
       ],
     },
     "contact-us": {

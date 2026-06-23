@@ -3,7 +3,7 @@ import { ALL_BRANCHES } from "../data/content";
 import { getBranchSection, getSectionsForBranch } from "../data/branchSections";
 import PageHero from "../components/PageHero";
 import { ArrowLeft, FileText, Construction, Mail, Phone, MapPin, ImageOff, ChevronRight } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function GalleryImage({ src, caption }) {
   const [errored, setErrored] = useState(false);
@@ -29,6 +29,90 @@ function GalleryImage({ src, caption }) {
       </div>
       <figcaption className="label-kicker text-[#4A5568] mt-2">{caption}</figcaption>
     </figure>
+  );
+}
+
+function TopperCard({ src, name, percentage }) {
+  const [errored, setErrored] = useState(false);
+  return (
+    <figure className="group">
+      <div className="aspect-[3/4] overflow-hidden bg-[#0A192F]/5 flex items-center justify-center">
+        {errored ? (
+          <div className="flex flex-col items-center justify-center text-center p-4">
+            <ImageOff size={22} className="text-[#4A5568] mb-2" />
+            <code className="text-[11px] text-[#0A192F] break-all">{src}</code>
+          </div>
+        ) : (
+          <img
+            src={src}
+            alt={name}
+            loading="lazy"
+            onError={() => setErrored(true)}
+            className="w-full h-full object-contain group-hover:scale-[1.02] transition-transform duration-500"
+          />
+        )}
+      </div>
+      <figcaption className="mt-3 text-center">
+        <div className="font-body text-[#0A192F] font-medium leading-snug">{name}</div>
+        <div className="label-kicker text-[#D4AF37] mt-1">{percentage}</div>
+      </figcaption>
+    </figure>
+  );
+}
+
+function DynamicGallery({ manifestUrl, folder, captionPrefix }) {
+  const [photos, setPhotos] = useState(null);
+  const [error, setError] = useState(null);
+  useEffect(() => {
+    let cancelled = false;
+    fetch(manifestUrl)
+      .then((r) => {
+        if (!r.ok) throw new Error(`HTTP ${r.status}`);
+        return r.json();
+      })
+      .then((list) => {
+        if (cancelled) return;
+        const items = (Array.isArray(list) ? list : list.photos || []).map((entry, i) => {
+          const file = typeof entry === "string" ? entry : entry.file;
+          const caption =
+            (typeof entry === "object" && entry.caption) ||
+            `${captionPrefix} · Photo ${i + 1}`;
+          return { src: `${folder}/${file}`, caption };
+        });
+        setPhotos(items);
+      })
+      .catch((e) => !cancelled && setError(e.message));
+    return () => {
+      cancelled = true;
+    };
+  }, [manifestUrl, folder, captionPrefix]);
+
+  if (error) {
+    return (
+      <div className="border border-dashed border-[#0A192F]/30 p-6 text-sm text-[#4A5568]">
+        Could not load gallery manifest at <code>{manifestUrl}</code>. Add your
+        photos to <code>public{folder}/</code> and run{" "}
+        <code>npm run gallery:manifest</code> in <code>frontend/</code>.
+      </div>
+    );
+  }
+  if (!photos) {
+    return <div className="text-sm text-[#4A5568]">Loading photos…</div>;
+  }
+  if (photos.length === 0) {
+    return (
+      <div className="border border-dashed border-[#0A192F]/30 p-6 text-sm text-[#4A5568]">
+        No photos yet. Drop image files into <code>public{folder}/</code> and
+        run <code>npm run gallery:manifest</code>.
+      </div>
+    );
+  }
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {photos.map((p) => (
+        <GalleryImage key={p.src} src={p.src} caption={p.caption} />
+      ))}
+    </div>
   );
 }
 
@@ -242,6 +326,24 @@ export default function BranchSection() {
                 <GalleryImage key={p.src} src={p.src} caption={p.caption} />
               ))}
             </div>
+          </>
+        ) : data.type === "toppers" ? (
+          <>
+            <h2 className="font-display text-3xl md:text-4xl text-[#0A192F] mb-8">{data.heading}</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              {data.photos.map((p) => (
+                <TopperCard key={p.src} src={p.src} name={p.name} percentage={p.percentage} />
+              ))}
+            </div>
+          </>
+        ) : data.type === "gallery-dynamic" ? (
+          <>
+            <h2 className="font-display text-3xl md:text-4xl text-[#0A192F] mb-8">{data.heading}</h2>
+            <DynamicGallery
+              manifestUrl={data.manifestUrl}
+              folder={data.folder}
+              captionPrefix={data.captionPrefix}
+            />
           </>
         ) : data.type === "pdf" ? (
           <>
