@@ -114,16 +114,6 @@ export const BRANCHES = {
           "Located in Limbew Jalgaon, the school provides affordable secondary education with strong outcomes in SSC board exams and a vibrant cultural calendar.",
       },
       {
-        slug: "om-secondary-school",
-        name: "Om Secondary School",
-        location: "Sahakar Nagar, Chhatrapati Sambhajinagar",
-        medium: "Marathi",
-        programs: ["Std. V", "Std. VI", "Std. VII", "Std. VIII", "Std. IX", "Std. X (SSC)"],
-        established: "2010",
-        about:
-          "OSSPM's urban Marathi-medium school in Sahakar Nagar, Chhatrapati Sambhajinagar. Houses smart classrooms, a computer lab, library and a dedicated sports ground.",
-      },
-      {
         slug: "om-balak-mandir",
         name: "Om Balak Mandir",
         location: "Sahakar Nagar, Chhatrapati Sambhajinagar",
@@ -132,6 +122,16 @@ export const BRANCHES = {
         established: "2010",
         about:
           "A pre-primary and primary school for the youngest learners — focused on play-based, mother-tongue early childhood education.",
+      },
+      {
+        slug: "om-secondary-school",
+        name: "Om Secondary School",
+        location: "Sahakar Nagar, Chhatrapati Sambhajinagar",
+        medium: "Marathi",
+        programs: ["Std. V", "Std. VI", "Std. VII", "Std. VIII", "Std. IX", "Std. X (SSC)"],
+        established: "2010",
+        about:
+          "OSSPM's urban Marathi-medium school in Sahakar Nagar, Chhatrapati Sambhajinagar. Houses smart classrooms, a computer lab, library and a dedicated sports ground.",
       },
     ],
   },
