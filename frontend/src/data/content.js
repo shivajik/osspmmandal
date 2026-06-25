@@ -76,9 +76,9 @@ export const BRANCHES = {
       {
         slug: "late-vimalbai-g-gaikwad-secondary-school",
         name: "Late. Vimalbai G. Gaikwad Secondary School",
-        location: "Gaikwad Jalgaon, Tq. Shevgaon, Dist. Ahmednagar",
+        location: "Gaikwad Jalgaon, Tq. Shevgaon, Dist. Ahilyanagar",
         medium: "Marathi",
-        programs: ["Std. V", "Std. VI", "Std. VII", "Std. VIII", "Std. IX", "Std. X (SSC)"],
+        programs: ["Std. VIII", "Std. IX", "Std. X (SSC)"],
         established: "1998",
         about:
           "One of OSSPM's flagship rural campuses, established to bring quality SSC-board education to children of farming families across Shevgaon taluka. The school combines traditional Marathi-medium pedagogy with modern science and computer labs.",
@@ -88,7 +88,7 @@ export const BRANCHES = {
         name: "Late. Kishanrao Dhanve Secondary School",
         location: "Bharadi, Tq. Ambad, Dist. Jalna",
         medium: "Marathi",
-        programs: ["Std. V", "Std. VI", "Std. VII", "Std. VIII", "Std. IX", "Std. X (SSC)"],
+        programs: ["Std. VIII", "Std. IX", "Std. X (SSC)"],
         established: "2002",
         about:
           "Serving the villages of Ambad taluka, this secondary school focuses on first-generation learners and girls' education with dedicated transport and scholarship support.",
@@ -98,7 +98,7 @@ export const BRANCHES = {
         name: "Secondary School, Rui",
         location: "Tq. Ambad, Dist. Jalna",
         medium: "Marathi",
-        programs: ["Std. V", "Std. VI", "Std. VII", "Std. VIII", "Std. IX", "Std. X (SSC)"],
+        programs: ["Std. VIII", "Std. IX", "Std. X (SSC)"],
         established: "2005",
         about:
           "A community-rooted Marathi-medium school at Rui village. Special emphasis on agriculture, environmental science and Marathi literature.",
@@ -106,19 +106,19 @@ export const BRANCHES = {
       {
         slug: "shree-shaneshwar-secondary-school",
         name: "Shree Shaneshwar Secondary School",
-        location: "Limbew Jalgaon, Tq. Gangapur, Dist. Chhatrapati Sambhajinagar",
+        location: "Limbe Jalgaon, Tq. Gangapur, Dist. Chhatrapati Sambhajinagar",
         medium: "Marathi",
-        programs: ["Std. V", "Std. VI", "Std. VII", "Std. VIII", "Std. IX", "Std. X (SSC)"],
+        programs: ["Std. VIII", "Std. IX", "Std. X (SSC)"],
         established: "2007",
         about:
-          "Located in Limbew Jalgaon, the school provides affordable secondary education with strong outcomes in SSC board exams and a vibrant cultural calendar.",
+          "Located in Limbe Jalgaon, the school provides affordable secondary education with strong outcomes in SSC board exams and a vibrant cultural calendar.",
       },
       {
         slug: "om-balak-mandir",
         name: "Om Balak Mandir",
         location: "Sahakar Nagar, Chhatrapati Sambhajinagar",
         medium: "Marathi",
-        programs: ["Nursery", "Jr. KG", "Sr. KG", "Std. I – IV"],
+        programs: ["Nursery", "Jr. KG", "Sr. KG"],
         established: "2010",
         about:
           "A pre-primary and primary school for the youngest learners — focused on play-based, mother-tongue early childhood education.",
@@ -128,7 +128,7 @@ export const BRANCHES = {
         name: "Om Secondary School",
         location: "Sahakar Nagar, Chhatrapati Sambhajinagar",
         medium: "Marathi",
-        programs: ["Std. V", "Std. VI", "Std. VII", "Std. VIII", "Std. IX", "Std. X (SSC)"],
+        programs: ["Std. IX", "Std. X (SSC)"],
         established: "2010",
         about:
           "OSSPM's urban Marathi-medium school in Sahakar Nagar, Chhatrapati Sambhajinagar. Houses smart classrooms, a computer lab, library and a dedicated sports ground.",
@@ -144,7 +144,7 @@ export const BRANCHES = {
       {
         slug: "late-gangadhar-patil-english-school",
         name: "Late. Gangadhar Patil English School",
-        location: "Gaikwad Jalgaon, Tq. Shevgaon, Dist. Ahmednagar",
+        location: "Gaikwad Jalgaon, Tq. Shevgaon, Dist. Ahilyanagar",
         medium: "English",
         programs: ["Nursery", "Jr. KG", "Sr. KG", "Std. I – X"],
         established: "2008",
@@ -182,7 +182,7 @@ export const BRANCHES = {
       {
         slug: "late-vimalbai-g-gaikwad-higher-secondary",
         name: "Late. Vimalbai G. Gaikwad Secondary & Higher Secondary School",
-        location: "Gaikwad Jalgaon, Tq. Shevgaon, Dist. Ahmednagar",
+        location: "Gaikwad Jalgaon, Tq. Shevgaon, Dist. Ahilyanagar",
         medium: "Marathi · English",
         programs: ["Std. XI Science", "Std. XII Science", "Std. XI Arts", "Std. XII Arts"],
         established: "2010",
@@ -192,22 +192,22 @@ export const BRANCHES = {
       {
         slug: "adarsh-junior-college",
         name: "Adarsh Junior College",
-        location: "Gaikwad Jalgaon, Tq. Shevgaon, Dist. Ahmednagar",
-        medium: "Marathi · English",
-        programs: ["XI / XII Science", "XI / XII Arts", "XI / XII Commerce"],
+        location: "Gaikwad Jalgaon, Tq. Shevgaon, Dist. Ahilyanagar",
+        medium: "English",
+        programs: ["Std. XI Science", "Std. XII Science"],
         established: "2012",
         about:
-          "Junior college offering Science, Arts and Commerce streams with experienced faculty and dedicated coaching for entrance examinations.",
+          "Junior college offering the Science stream with experienced faculty and dedicated coaching for entrance examinations.",
       },
       {
         slug: "shree-shaneshwar-higher-secondary",
         name: "Shree Shaneshwar Higher Secondary School",
-        location: "Limbew Jalgaon, Tq. Gangapur, Dist. Chhatrapati Sambhajinagar",
+        location: "Limbe Jalgaon, Tq. Gangapur, Dist. Chhatrapati Sambhajinagar",
         medium: "Marathi",
         programs: ["Std. XI Science", "Std. XII Science", "Std. XI Arts", "Std. XII Arts"],
         established: "2014",
         about:
-          "Higher-secondary education at Limbew Jalgaon — bringing Std. XI and XII Science and Arts streams to a region historically underserved at the +2 level.",
+          "Higher-secondary education at Limbe Jalgaon — bringing Std. XI and XII Science and Arts streams to a region historically underserved at the +2 level.",
       },
     ],
   },
