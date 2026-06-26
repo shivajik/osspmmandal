@@ -72,9 +72,19 @@ export const BRANCH_SECTION_KEYS = {
 
 // Photo gallery slots — files live in /public/gallery/<slug>/photo-N.jpg.
 export const BRANCH_GALLERIES = {
-  "om-balak-mandir": Array.from({ length: 16 }, (_, i) => ({
-    src: `/gallery/om-balak-mandir/photo-${i + 1}.jpg`,
-    caption: `Om Balak Mandir · Photo ${i + 1}`,
+  "om-balak-mandir": [
+    ...Array.from({ length: 16 }, (_, i) => ({
+      src: `/gallery/om-balak-mandir/photo-${i + 1}.jpg`,
+      caption: `Om Balak Mandir · Photo ${i + 1}`,
+    })),
+    ...Array.from({ length: 9 }, (_, i) => ({
+      src: `/gallery/om-balak-mandir/legacy-${i + 1}.jpg`,
+      caption: `Om Balak Mandir · Photo ${i + 17}`,
+    })),
+  ],
+  "late-gangadhar-patil-english-school": Array.from({ length: 32 }, (_, i) => ({
+    src: `/gallery/late-gangadhar-patil-english-school/photo-${i + 1}.jpg`,
+    caption: `Late. Gangadhar Patil English School · Photo ${i + 1}`,
   })),
   "sai-english-school-rui": Array.from({ length: 20 }, (_, i) => ({
     src: `/gallery/sai-english-school-rui/photo-${i + 1}.jpg`,
@@ -84,6 +94,7 @@ export const BRANCH_GALLERIES = {
     src: `/gallery/the-tesla-high-school/photo-${i + 1}.jpg`,
     caption: `The Tesla High School · Photo ${i + 1}`,
   })),
+
   "shree-shaneshwar-secondary-school": [
     "WhatsApp Image 2024-01-13 at 2.18.06 PM.jpeg",
     "WhatsApp Image 2024-01-13 at 2.18.05 PM.jpeg",

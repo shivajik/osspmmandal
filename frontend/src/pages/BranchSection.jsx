@@ -210,21 +210,24 @@ function AcademicYears({ data }) {
         admissions to leading medical and engineering colleges.
       </p>
 
-      <div className="flex flex-wrap gap-2 mb-10 border-b border-[#0A192F]/10 pb-4">
-        {years.map((y) => (
-          <button
-            key={y.year}
-            onClick={() => setActiveYear(y.year)}
-            className={`label-kicker px-5 py-3 border transition-colors ${
-              y.year === current.year
-                ? "bg-[#0A192F] text-[#FBF9F6] border-[#0A192F]"
-                : "border-[#0A192F]/20 text-[#0A192F] hover:border-[#D4AF37] hover:text-[#D4AF37]"
-            }`}
+      <div className="mb-10 border-b border-[#0A192F]/10 pb-4">
+        <label className="label-kicker text-[#4A5568] block mb-2">Academic Year</label>
+        <div className="relative inline-block w-full sm:w-auto">
+          <select
+            value={current?.year}
+            onChange={(e) => setActiveYear(e.target.value)}
+            className="label-kicker appearance-none bg-[#0A192F] text-[#FBF9F6] border border-[#0A192F] pl-5 pr-12 py-3 min-w-[260px] w-full sm:w-auto cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#D4AF37]"
           >
-            {y.year}
-          </button>
-        ))}
+            {years.map((y) => (
+              <option key={y.year} value={y.year} className="bg-white text-[#0A192F]">
+                {y.year}
+              </option>
+            ))}
+          </select>
+          <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[#FBF9F6]">▾</span>
+        </div>
       </div>
+
 
       {current?.tables.map((t, ti) => (
         <AcademicTable key={`${current.year}-${ti}`} table={t} />
