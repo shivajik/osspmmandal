@@ -72,9 +72,17 @@ export const BRANCH_SECTION_KEYS = {
 
 // Photo gallery slots — files live in /public/gallery/<slug>/photo-N.jpg.
 export const BRANCH_GALLERIES = {
-  "om-balak-mandir": Array.from({ length: 9 }, (_, i) => ({
+  "om-balak-mandir": Array.from({ length: 16 }, (_, i) => ({
     src: `/gallery/om-balak-mandir/photo-${i + 1}.jpg`,
     caption: `Om Balak Mandir · Photo ${i + 1}`,
+  })),
+  "sai-english-school-rui": Array.from({ length: 20 }, (_, i) => ({
+    src: `/gallery/sai-english-school-rui/photo-${i + 1}.jpg`,
+    caption: `Sai English School, Rui · Photo ${i + 1}`,
+  })),
+  "the-tesla-high-school": Array.from({ length: 13 }, (_, i) => ({
+    src: `/gallery/the-tesla-high-school/photo-${i + 1}.jpg`,
+    caption: `The Tesla High School · Photo ${i + 1}`,
   })),
   "shree-shaneshwar-secondary-school": [
     "WhatsApp Image 2024-01-13 at 2.18.06 PM.jpeg",
@@ -497,6 +505,27 @@ export const BRANCH_SECTIONS = {
       heading: "Academic Achievements",
       years: [
         {
+          year: "Achievement Summary",
+          tables: [
+            {
+              title: "Adarsh Jr. College, Gaikwad Jalgaon — H.S.C. (12th) Year-wise Result",
+              columns: ["Year", "H.S.C. (12th) Result %"],
+              rows: [
+                ["2017", "100%"],
+                ["2018", "100%"],
+                ["2019", "100%"],
+                ["2020", "100%"],
+                ["2021", "100%"],
+                ["2022", "100%"],
+                ["2023", "100%"],
+                ["2024", "99.57%"],
+                ["2025", "97.86%"],
+                ["2026", "98.31%"],
+              ],
+            },
+          ],
+        },
+        {
           year: "MAR/APRIL 2022",
           tables: [
             {
@@ -876,6 +905,42 @@ export const BRANCH_SECTIONS = {
       heading: "Academic Achievements — S.S.C. (10th)",
       years: [
         {
+          year: "Achievement Summary",
+          tables: [
+            {
+              title: "कै. विमलबाई गंगाधर गायकवाड माध्यमिक विद्यालय — S.S.C. (10th) Year-wise Result",
+              columns: ["Academic Year", "S.S.C. (10th) Result %"],
+              rows: [
+                ["2002", "86.48%"],
+                ["2003", "96.77%"],
+                ["2004", "87.87%"],
+                ["2005", "41.46%"],
+                ["2006", "80.64%"],
+                ["2007", "86.11%"],
+                ["2008", "100%"],
+                ["2009", "100%"],
+                ["2010", "100%"],
+                ["2011", "98.21%"],
+                ["2012", "100%"],
+                ["2013", "94.29%"],
+                ["2014", "100%"],
+                ["2015", "100%"],
+                ["2016", "98.08%"],
+                ["2017", "93.10%"],
+                ["2018", "93.94%"],
+                ["2019", "75.54%"],
+                ["2020", "93.54%"],
+                ["2021", "100%"],
+                ["2022", "100%"],
+                ["2023", "96.36%"],
+                ["2024", "97.22%"],
+                ["2025", "89.55%"],
+                ["2026", "92.95%"],
+              ],
+            },
+          ],
+        },
+        {
           year: "2020-21",
           tables: [
           {
@@ -1032,6 +1097,34 @@ export const BRANCH_SECTIONS = {
       type: "academic-years",
       heading: "Academic Achievements — H.S.C. (12th)",
       years: [
+        {
+          year: "Achievement Summary",
+          tables: [
+            {
+              title: "V.G.G. Jr. College, Gaikwad Jalgaon — H.S.C. (12th) Year-wise Result (Arts & Science)",
+              columns: ["Year", "Arts %", "Science %"],
+              rows: [
+                ["2010", "86.67%", "—"],
+                ["2011", "83.67%", "—"],
+                ["2012", "95.92%", "80.00%"],
+                ["2013", "91.49%", "100%"],
+                ["2014", "100%", "100%"],
+                ["2015", "92.31%", "100%"],
+                ["2016", "77.55%", "98.54%"],
+                ["2017", "91.78%", "100%"],
+                ["2018", "82.86%", "98.76%"],
+                ["2019", "81.48%", "98.78%"],
+                ["2020", "59.15%", "96.22%"],
+                ["2021", "100%", "100%"],
+                ["2022", "89.76%", "98.40%"],
+                ["2023", "91.30%", "99.55%"],
+                ["2024", "88.57%", "99.45%"],
+                ["2025", "25%", "93.71%"],
+                ["2026", "90.56%", "95.48%"],
+              ],
+            },
+          ],
+        },
         {
           year: "2021-22",
           tables: [
@@ -1361,6 +1454,7 @@ export const BRANCH_SECTIONS = {
       type: "contact",
       heading: "The Tesla High School — Contact",
       address: "Deolai Area, Chhatrapati Sambhajinagar",
+      email: "theteslaengschool101@gmail.com",
       phones: ["8308123101"],
     },
   },
