@@ -1,4 +1,4 @@
-import { Link, NavLink, useParams } from "react-router-dom";
+import { Link, NavLink, useParams, useSearchParams } from "react-router-dom";
 import { ALL_BRANCHES } from "../data/content";
 import { getBranchSection, getSectionsForBranch } from "../data/branchSections";
 import PageHero from "../components/PageHero";
@@ -197,10 +197,19 @@ function PaginatedGallery({ photos, perPage = 12 }) {
   );
 }
 
-function AcademicYears({ data }) {
+function AcademicYears({ data, mode: modeProp }) {
   const years = data.years || [];
-  const [activeYear, setActiveYear] = useState(years[0]?.year);
-  const current = years.find((y) => y.year === activeYear) || years[0];
+  const isSummary = (y) => /summary/i.test(y.year);
+  const summary = years.find(isSummary);
+  const yearOnly = years.filter((y) => !isSummary(y));
+
+  const mode = modeProp || (yearOnly.length > 0 ? "year-wise" : "summary");
+  const [activeYear, setActiveYear] = useState(yearOnly[0]?.year);
+
+  const current =
+    mode === "summary"
+      ? summary
+      : yearOnly.find((y) => y.year === activeYear) || yearOnly[0];
 
   return (
     <>
@@ -210,24 +219,27 @@ function AcademicYears({ data }) {
         admissions to leading medical and engineering colleges.
       </p>
 
-      <div className="mb-10 border-b border-[#0A192F]/10 pb-4">
-        <label className="label-kicker text-[#4A5568] block mb-2">Academic Year</label>
-        <div className="relative inline-block w-full sm:w-auto">
-          <select
-            value={current?.year}
-            onChange={(e) => setActiveYear(e.target.value)}
-            className="label-kicker appearance-none bg-[#0A192F] text-[#FBF9F6] border border-[#0A192F] pl-5 pr-12 py-3 min-w-[260px] w-full sm:w-auto cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#D4AF37]"
-          >
-            {years.map((y) => (
-              <option key={y.year} value={y.year} className="bg-white text-[#0A192F]">
+      {/* Year tabs only visible in Year-wise mode */}
+      {mode === "year-wise" && yearOnly.length > 0 && (
+        <div className="mb-10">
+          <label className="label-kicker text-[#4A5568] block mb-3">Academic Year</label>
+          <div className="flex flex-wrap gap-2">
+            {yearOnly.map((y) => (
+              <button
+                key={y.year}
+                onClick={() => setActiveYear(y.year)}
+                className={`label-kicker px-5 py-2.5 border transition-colors ${
+                  (activeYear || yearOnly[0]?.year) === y.year
+                    ? "bg-[#0A192F] text-[#FBF9F6] border-[#0A192F]"
+                    : "border-[#0A192F]/20 text-[#0A192F] hover:border-[#D4AF37] hover:text-[#D4AF37]"
+                }`}
+              >
                 {y.year}
-              </option>
+              </button>
             ))}
-          </select>
-          <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[#FBF9F6]">▾</span>
+          </div>
         </div>
-      </div>
-
+      )}
 
       {current?.tables.map((t, ti) => (
         <AcademicTable key={`${current.year}-${ti}`} table={t} />
@@ -315,6 +327,7 @@ export default function BranchSection() {
     );
   }
 
+  const [searchParams, setSearchParams] = useSearchParams();
   const { section, data } = result;
   const sections = getSectionsForBranch(slug);
 
@@ -349,20 +362,45 @@ export default function BranchSection() {
                 <ChevronRight size={14} className="opacity-50" />
               </Link>
               {sections.map((s) => (
-                <NavLink
-                  key={s.key}
-                  to={`/branches/${branch.slug}/${s.key}`}
-                  className={({ isActive }) =>
-                    `flex items-center justify-between px-4 py-3 text-sm border-b last:border-b-0 border-[#0A192F]/10 transition-colors ${
-                      isActive
-                        ? "bg-[#0A192F] text-[#FBF9F6]"
-                        : "text-[#0A192F] hover:bg-[#F0F4F8] hover:text-[#1A5F5A]"
-                    }`
-                  }
-                >
-                  <span>{s.label}</span>
-                  <ChevronRight size={14} className="opacity-50" />
-                </NavLink>
+                <div key={s.key}>
+                  <NavLink
+                    to={`/branches/${branch.slug}/${s.key}`}
+                    className={({ isActive }) =>
+                      `flex items-center justify-between px-4 py-3 text-sm border-b border-[#0A192F]/10 transition-colors ${
+                        isActive
+                          ? "bg-[#0A192F] text-[#FBF9F6]"
+                          : "text-[#0A192F] hover:bg-[#F0F4F8] hover:text-[#1A5F5A]"
+                      }`
+                    }
+                  >
+                    <span>{s.label}</span>
+                    <ChevronRight size={14} className="opacity-50" />
+                  </NavLink>
+                  {s.key === "academic-achievements" && sectionKey === "academic-achievements" && (
+                    <div className="bg-[#F8F9FA] border-b border-[#0A192F]/10">
+                      <button
+                        onClick={() => setSearchParams({ view: "year-wise" })}
+                        className={`w-full text-left px-8 py-2.5 label-kicker transition-colors ${
+                          searchParams.get("view") !== "summary"
+                            ? "text-[#0A192F] font-medium bg-[#E8ECEF]"
+                            : "text-[#4A5568] hover:text-[#0A192F]"
+                        }`}
+                      >
+                        Year-wise
+                      </button>
+                      <button
+                        onClick={() => setSearchParams({ view: "summary" })}
+                        className={`w-full text-left px-8 py-2.5 label-kicker transition-colors ${
+                          searchParams.get("view") === "summary"
+                            ? "text-[#0A192F] font-medium bg-[#E8ECEF]"
+                            : "text-[#4A5568] hover:text-[#0A192F]"
+                        }`}
+                      >
+                        Achievement Summary
+                      </button>
+                    </div>
+                  )}
+                </div>
               ))}
             </nav>
           </div>
@@ -543,7 +581,7 @@ export default function BranchSection() {
             </div>
           </>
         ) : data.type === "academic-years" ? (
-          <AcademicYears data={data} />
+          <AcademicYears data={data} mode={searchParams.get("view")} />
         ) : null}
         </div>
       </section>
